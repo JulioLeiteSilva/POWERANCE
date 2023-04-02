@@ -30,6 +30,10 @@ class SignUpActivity : AppCompatActivity() {
             val phone = binding.signUpFone.text.toString()
             val password = binding.signUpPassword.text.toString()
             val cPassword = binding.signUpCPassword.text.toString()
+            val adress1 = ""
+            val adress2 = ""
+            val adress3 = ""
+            val miniResume=""
 
             binding.signUPProgressBar.visibility= View.VISIBLE
             binding.signUpPasswordLayout.isPasswordVisibilityToggleEnabled = true
@@ -75,6 +79,7 @@ class SignUpActivity : AppCompatActivity() {
                 binding.signUpCPassword.error="As senhas não batem"
                 Toast.makeText(this,"As senhas não batem", Toast.LENGTH_SHORT).show()
             }else if(email != cEmail){
+                binding.signUPProgressBar.visibility= View.GONE
                 binding.signUpCEmail.error="Os Emails não batem"
                 Toast.makeText(this,"Os Emails não batem", Toast.LENGTH_SHORT).show()
             }else{
@@ -82,8 +87,11 @@ class SignUpActivity : AppCompatActivity() {
                     when{
                         it.isSuccessful ->{
                             Toast.makeText(this,"Usuario cadastrado", Toast.LENGTH_SHORT).show()
+                            createUser(email,name,phone,adress1,adress2,adress3,miniResume)
+                            binding.signUPProgressBar.visibility= View.GONE
                         }
                         else ->{
+                            binding.signUPProgressBar.visibility= View.GONE
                             Toast.makeText(this,"Algo deu errado, tente novamente", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -95,6 +103,26 @@ class SignUpActivity : AppCompatActivity() {
 
     }
 
+
+    private fun insertUser(user:User){
+        val userRef= database.collection("users")
+
+        userRef.document().set(user).addOnCompleteListener(){
+            when{
+                it.isSuccessful ->{
+                    Toast.makeText(this,"Usuario postado", Toast.LENGTH_SHORT).show()
+                }
+                else ->{
+                    Toast.makeText(this,"Algo deu errado", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+    private fun createUser(email:String,name:String,phone:String,adress1:String,adress2:String,adress3:String,miniResume:String) {
+        val user = User(email,name,phone,adress1,adress2,adress3,miniResume)
+        insertUser(user)
+    }
+
     private fun clearInputs(){
         binding.signUpName.text?.clear()
         binding.signUpEmail.text?.clear()
@@ -102,6 +130,5 @@ class SignUpActivity : AppCompatActivity() {
         binding.signUpFone.text?.clear()
         binding.signUpPassword.text?.clear()
         binding.signUpCPassword.text?.clear()
-
     }
 }
