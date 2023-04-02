@@ -16,9 +16,14 @@ private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivitySignUpBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
+
+        binding.tvLinkLogin.setOnClickListener{
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
 
         auth=FirebaseAuth.getInstance()
         database=FirebaseFirestore.getInstance()
