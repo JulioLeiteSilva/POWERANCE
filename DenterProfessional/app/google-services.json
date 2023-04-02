@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "37191378668",
+    "project_id": "denter-a6ed9",
+    "storage_bucket": "denter-a6ed9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37191378668:android:4b0f3058c51234481f27c9",
+        "android_client_info": {
+          "package_name": "br.com.powerance.denterprofessional"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37191378668-c41c22sqpbntouadnralihmspuqg38vr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVLOL-G3xIHVebCg9OU4RattHrvTvIT0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37191378668-c41c22sqpbntouadnralihmspuqg38vr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

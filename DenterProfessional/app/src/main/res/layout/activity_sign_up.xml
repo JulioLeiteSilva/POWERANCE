@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/singInUp"
-    tools:context=".SingUpActivity">
+    android:background="@drawable/sign_in_up"
+    tools:context=".SignUpActivity">
     
     <ProgressBar
+        android:id="@+id/signUPProgressBar"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
@@ -31,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Name:"
+                android:hint="Nome:"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 

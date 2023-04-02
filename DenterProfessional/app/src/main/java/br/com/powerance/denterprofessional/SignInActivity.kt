@@ -3,9 +3,9 @@ package br.com.powerance.denterprofessional
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class SingInActivity : AppCompatActivity() {
+class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sing_in)
+        setContentView(R.layout.activity_sign_in)
     }
 }
