@@ -1,5 +1,6 @@
 package br.com.powerance.denterprofessional
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -21,8 +22,9 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.tvLinkLogin.setOnClickListener{
-            val intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
+
         }
 
         auth=FirebaseAuth.getInstance()

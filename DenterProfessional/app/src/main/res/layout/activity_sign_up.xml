@@ -97,7 +97,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
                 android:hint="Senha:"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -114,7 +115,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
                 android:hint="Confirme sua senha:   "
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

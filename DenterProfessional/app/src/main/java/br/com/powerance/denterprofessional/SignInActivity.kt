@@ -1,5 +1,6 @@
 package br.com.powerance.denterprofessional
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import br.com.powerance.denterprofessional.databinding.ActivitySignInBinding
@@ -13,7 +14,7 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding2.root)
 
         binding2.tvLinkSignUp.setOnClickListener{
-            val intent = Intent(this, SignInActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
     }
