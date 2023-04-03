@@ -9,7 +9,7 @@ import br.com.powerance.denterprofessional.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-lateinit var binding: ActivitySignUpBinding
+lateinit var binding:ActivitySignUpBinding
 private lateinit var auth:FirebaseAuth
 private lateinit var database:FirebaseFirestore
 private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
