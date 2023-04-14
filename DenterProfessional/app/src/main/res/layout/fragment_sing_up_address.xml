@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sign_in_up"
-    tools:context=".SignUpFragment">
+    tools:context=".SignUpAddressFragment">
 
     <ProgressBar
         android:id="@+id/signUPProgressBar"
@@ -25,14 +25,30 @@
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="350dp"
+
             android:layout_height="60dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signUpName"
+                android:id="@+id/signUpCEP"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Nome:"
+                android:hint="CEP"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="350dp"
+            android:layout_height="60dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signUpAdress1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="13dp"
+                android:hint="Linha de Endereço 1"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,11 +60,11 @@
             android:layout_height="60dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signUpFone"
+                android:id="@+id/signUpAdress2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Telefone:"
+                android:hint="Linha de Endereço 2"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,67 +76,16 @@
             android:layout_height="60dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signUpEmail"
+                android:id="@+id/signUpAdress3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="E-mail:"
+                android:hint="Linha de Endereço 3"
                 android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="350dp"
-
-            android:layout_height="60dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signUpCEmail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="13dp"
-                android:hint="Confirme o E-mail:"
-                android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/signUpPasswordLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="350dp"
-            android:layout_height="60dp"
-            app:passwordToggleEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signUpPassword"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="13dp"
-                android:hint="Senha:"
-                android:textColor="@color/black"
-                android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/signUpCPasswordLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="350dp"
-            android:layout_height="60dp"
-
-            app:passwordToggleEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/signUpCPassword"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="13dp"
-                android:hint="Confirme sua senha:   "
-                android:textColor="@color/black"
-                android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btnNext"
+            android:id="@+id/btnNext1"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
@@ -128,34 +93,6 @@
             android:textAllCaps="false"
             android:textSize="20sp" />
 
-
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width= "match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:layout_marginBottom="13dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Já tem uma conta?"
-            android:textSize="13sp"
-            android:layout_gravity="center"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:id="@+id/tvLinkLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Faça login"
-            android:textSize="13sp"
-            android:layout_gravity="center"
-            android:textColor="#12B5A5"
-            android:textStyle="bold"
-            android:layout_marginStart="8dp"/>
-    </LinearLayout>
 </RelativeLayout>

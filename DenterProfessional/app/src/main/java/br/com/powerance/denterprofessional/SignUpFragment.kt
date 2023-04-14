@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import br.com.powerance.denterprofessional.databinding.FragmentSignUpBinding
 
 
@@ -92,7 +93,7 @@ class SignUpFragment : Fragment() {
                 binding.signUpCEmail.error="Os Emails não batem"
                 Toast.makeText(activity,"Os Emails não batem", Toast.LENGTH_SHORT).show()
             }else{
-                //passar para proxima tela
+                findNavController().navigate(R.id.action_SignUp_to_SignUpAddress)
             }
         }
     }

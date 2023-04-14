@@ -9,6 +9,13 @@
         android:id="@+id/singUp"
         android:name="br.com.powerance.denterprofessional.SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
-
+        <action
+            android:id="@+id/action_SignUp_to_SignUpAddress"
+            app:destination="@id/singUpAddress" />
+    </fragment>
+    <fragment
+        android:id="@+id/singUpAddress"
+        android:name="br.com.powerance.denterprofessional.SignUpAddressFragment"
+        tools:layout="@layout/fragment_sing_up_address">
     </fragment>
 </navigation>
