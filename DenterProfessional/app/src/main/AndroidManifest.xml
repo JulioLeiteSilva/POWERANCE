@@ -17,18 +17,6 @@
             android:name=".SignActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpMiniResumeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SignUpAdressActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SignUpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SignInActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

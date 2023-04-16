@@ -1,6 +1,9 @@
 package br.com.powerance.denterprofessional
 
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +12,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import br.com.powerance.denterprofessional.databinding.FragmentSignUpBinding
 
-
+private var phoneNumberIsCorrect = false
 private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
 class SignUpFragment : Fragment() {
@@ -19,7 +22,6 @@ class SignUpFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,10 +42,6 @@ class SignUpFragment : Fragment() {
             val phone = binding.signUpFone.text.toString()
             val password = binding.signUpPassword.text.toString()
             val cPassword = binding.signUpCPassword.text.toString()
-            val adress1 = ""
-            val adress2 = ""
-            val adress3 = ""
-            val miniResume=""
 
             binding.signUPProgressBar.visibility= View.VISIBLE
             binding.signUpPasswordLayout.isPasswordVisibilityToggleEnabled = true
@@ -72,14 +70,14 @@ class SignUpFragment : Fragment() {
                 }
                 Toast.makeText(activity,"Insira detalhes validos", Toast.LENGTH_SHORT).show()
                 binding.signUPProgressBar.visibility= View.GONE
+            }else if(phone.length!=13){
+                binding.signUPProgressBar.visibility= View.GONE
+                binding.signUpFone.error="Insira um número de telefone valido"
+                Toast.makeText(activity,"Insira um número de telefone valido", Toast.LENGTH_SHORT).show()
             }else if(!email.matches(emailPattern.toRegex())){
                 binding.signUPProgressBar.visibility= View.GONE
                 binding.signUpEmail.error="Insira seu endereço email valido"
                 Toast.makeText(activity,"Insira um endereço de email valido", Toast.LENGTH_SHORT).show()
-            }else if(phone.length!=10){
-                binding.signUPProgressBar.visibility= View.GONE
-                binding.signUpFone.error="Insira um número de telefone valido"
-                Toast.makeText(activity,"Insira um número de telefone valido", Toast.LENGTH_SHORT).show()
             }else if(password.length < 6){
                 binding.signUPProgressBar.visibility= View.GONE
                 binding.signUpPassword.error="A senha deve ter mais de 6 digitos"
@@ -96,7 +94,14 @@ class SignUpFragment : Fragment() {
                 findNavController().navigate(R.id.action_SignUp_to_SignUpAddress)
             }
         }
+
+        binding.tvLinkLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_SignUp_to_SignUpAddress)
+            //findNavController().navigate(R.id.action_SignUp_to_SignIn)
+        }
+        binding.signUpFone.addTextChangedListener(PhoneNumberFormattingTextWatcher("BR"))
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

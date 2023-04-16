@@ -27,6 +27,15 @@ class SignUpMiniResumeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnEnd.setOnClickListener {
+            val miniResume=binding.signUpMiniResume.text.toString()
+
+            if(miniResume.isEmpty()){
+                binding.signUpMiniResume.error="Insira seu mini curículo"
+            }else{
+                //Aqui é chamada a function do firebase
+            }
+        }
     }
 
     override fun onDestroyView() {

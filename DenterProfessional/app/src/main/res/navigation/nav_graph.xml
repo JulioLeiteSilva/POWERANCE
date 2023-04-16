@@ -3,19 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/singUp">
+    app:startDestination="@id/signUp">
 
     <fragment
-        android:id="@+id/singUp"
+        android:id="@+id/signUp"
         android:name="br.com.powerance.denterprofessional.SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_SignUp_to_SignUpAddress"
-            app:destination="@id/singUpAddress" />
+            app:destination="@id/signUpAddress" />
+        <action
+            android:id="@+id/action_SignUp_to_SignIn"
+            app:destination="@id/signIn"/>
     </fragment>
     <fragment
-        android:id="@+id/singUpAddress"
+        android:id="@+id/signUpAddress"
         android:name="br.com.powerance.denterprofessional.SignUpAddressFragment"
-        tools:layout="@layout/fragment_sing_up_address">
+        tools:layout="@layout/fragment_sign_up_address">
+        <action
+            android:id="@+id/action_SignUpAddress_to_SignUpMiniResume"
+            app:destination="@id/singUpMiniResume"/>
+    </fragment>
+    <fragment
+        android:id="@+id/singUpMiniResume"
+        android:name="br.com.powerance.denterprofessional.SignUpMiniResumeFragment"
+        tools:layout="@layout/fragment_sign_up_mini_resume">
+    </fragment>
+    <fragment
+        android:id="@+id/signIn"
+        android:name="br.com.powerance.denterprofessional.SignInFragment"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_SignIn_to_SignUp"
+            app:destination="@id/signUp"/>
     </fragment>
 </navigation>
