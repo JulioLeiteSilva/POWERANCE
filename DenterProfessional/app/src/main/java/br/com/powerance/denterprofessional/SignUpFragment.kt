@@ -96,8 +96,8 @@ class SignUpFragment : Fragment() {
         }
 
         binding.tvLinkLogin.setOnClickListener {
-            findNavController().navigate(R.id.action_SignUp_to_SignUpAddress)
-            //findNavController().navigate(R.id.action_SignUp_to_SignIn)
+            //findNavController().navigate(R.id.action_SignUp_to_SignUpAddress)
+            findNavController().navigate(R.id.action_SignUp_to_SignIn)
         }
         binding.signUpFone.addTextChangedListener(PhoneNumberFormattingTextWatcher("BR"))
     }
