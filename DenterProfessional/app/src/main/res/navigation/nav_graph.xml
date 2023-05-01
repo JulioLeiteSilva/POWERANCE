@@ -28,6 +28,9 @@
         android:id="@+id/singUpMiniResume"
         android:name="br.com.powerance.denterprofessional.SignUpMiniResumeFragment"
         tools:layout="@layout/fragment_sign_up_mini_resume">
+        <action
+            android:id="@+id/action_SignUpMiniResume_to_SignIn"
+            app:destination="@+id/signIn"/>
     </fragment>
     <fragment
         android:id="@+id/signIn"
@@ -35,16 +38,8 @@
         tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_SignIn_to_SignUp"
-            app:destination="@id/userProfile"/>
-
+            app:destination="@+id/signUp"
+            />
     </fragment>
 
-    <fragment
-        android:id="@+id/userProfile"
-        android:name="br.com.powerance.denterprofessional.UserProfileFragment"
-        tools:layout="@layout/fragment_user_profile">
-        <action
-            android:id="@+id/action_User_to_SignIN"
-            app:destination="@+id/signIn"/>
-    </fragment>
 </navigation>

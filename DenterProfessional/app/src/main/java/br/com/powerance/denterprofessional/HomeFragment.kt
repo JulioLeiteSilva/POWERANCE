@@ -1,17 +1,17 @@
 package br.com.powerance.denterprofessional
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import br.com.powerance.denterprofessional.databinding.FragmentHomeBinding
 import br.com.powerance.denterprofessional.databinding.FragmentSignInBinding
 
-class SignInFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private var _binding: FragmentSignInBinding? = null
+    private var _binding: FragmentHomeBinding? = null
 
     private val binding get() = _binding!!
 
@@ -20,7 +20,7 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentSignInBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -28,14 +28,6 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvLinkSignUp.setOnClickListener {
-            findNavController().navigate(R.id.action_SignIn_to_SignUp)
-        }
-
-        binding.btnEntrar.setOnClickListener{
-            val intent = Intent(view.context, MenuActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     override fun onDestroyView() {

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_menu"
+    app:startDestination="@id/Home">
+
+    <fragment
+        android:id="@+id/userProfile"
+        android:name="br.com.powerance.denterprofessional.UserProfileFragment"
+        tools:layout="@layout/fragment_user_profile">
+        <action
+            android:id="@+id/action_User_to_Home"
+            app:destination="@+id/Home"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/Home"
+        android:name="br.com.powerance.denterprofessional.HomeFragment"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_Home_To_Profile"
+            app:destination="@+id/userProfile"/>
+    </fragment>
+
+</navigation>
