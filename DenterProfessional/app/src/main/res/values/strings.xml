@@ -11,4 +11,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="default_notification_channel_id" translatable="false">canal_padrao</string>
+    <string name="fcm_default_title_message" translatable="false">Mensagem</string>
+    <string name="notifications_are_disabled_fragment_label">Notificações desabilitadas</string>
 </resources>
