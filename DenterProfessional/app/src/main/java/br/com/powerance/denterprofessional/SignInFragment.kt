@@ -38,6 +38,9 @@ class SignInFragment : Fragment() {
         binding.tvLinkSignUp.setOnClickListener {
             findNavController().navigate(R.id.action_SignIn_to_SignUp)
         }
+        binding.btnEntrar.setOnClickListener{
+            login(binding.signInEmail.text.toString(),binding.signInPassword.text.toString())
+        }
 
     }
 //    private fun View.hideKeyboard() {
@@ -58,6 +61,7 @@ class SignInFragment : Fragment() {
                 if (it.isSuccessful) {
                     // login completado com sucesso.
                     //findNavController().navigate(R.id.action_login_to_info)
+                    Snackbar.make(requireView(),"s", Snackbar.LENGTH_LONG).show()
                 } else {
                     if (it.exception is FirebaseAuthException) {
                         Snackbar.make(requireView(),"Não foi possível fazer o login, verifique os dados e tente novamente.", Snackbar.LENGTH_LONG).show()
