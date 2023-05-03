@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             this.finish()
         }else{
-            intent = Intent(this, SignActivity::class.java)
+            intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
             this.finish()
         }

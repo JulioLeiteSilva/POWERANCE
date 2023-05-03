@@ -14,6 +14,7 @@ class SignActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignBinding
     private lateinit var userPreferencesRepository: UserPreferencesRepository
+    public var user = User("email","name","phone","","","","","","",false,"","")
     fun storeUserId(uid: String){
         userPreferencesRepository.uid = uid
     }

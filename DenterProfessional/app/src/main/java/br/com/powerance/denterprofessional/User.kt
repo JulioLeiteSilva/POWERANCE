@@ -1,10 +1,16 @@
 package br.com.powerance.denterprofessional
 
-data class User(val email:String,
-                val name:String,
-                val phone:String,
-                val adress1:String,
-                val adress2:String,
-                val adress3:String,
-                val miniResume:String
+data class User(
+    var email:String,
+    var name:String,
+    var phone:String,
+    var password:String,
+    var cep:String,
+    var adress1:String,
+    var adress2:String,
+    var adress3:String,
+    var miniResume:String,
+    var status: Boolean,
+    var fcmToken: String,
+    var uid: String
                 )

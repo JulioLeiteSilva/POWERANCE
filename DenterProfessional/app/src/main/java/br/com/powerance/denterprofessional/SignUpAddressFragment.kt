@@ -35,7 +35,7 @@ class SignUpAddressFragment : Fragment() {
             val cep = binding.signUpCEP.text.toString()
             val adress1 = binding.signUpAdress1.text.toString()
             val adress2 = binding.signUpAdress2.text.toString()
-            val adress3 = binding.signUpAdress3.text.toString()
+            var adress3 = binding.signUpAdress3.text.toString()
 
             if(cep.isEmpty()||adress1.isEmpty()){
                 if(cep.isEmpty()){
@@ -47,6 +47,12 @@ class SignUpAddressFragment : Fragment() {
             }else if(cep.length!=9){
                 binding.signUpCEP.error="CEP Inválido"
             }else{
+                (activity as? SignActivity)?.let {
+                    it.user.cep = cep
+                    it.user.adress1=adress1
+                    it.user.adress2=adress2
+                    it.user.adress3=adress3
+                }
                 findNavController().navigate(R.id.action_SignUpAddress_to_SignUpMiniResume)
             }
         }

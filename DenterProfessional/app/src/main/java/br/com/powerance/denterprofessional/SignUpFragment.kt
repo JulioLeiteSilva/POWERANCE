@@ -79,7 +79,7 @@ class SignUpFragment : Fragment() {
                 binding.signUpEmail.error="Insira seu endereço email valido"
                 Toast.makeText(activity,"Insira um endereço de email valido", Toast.LENGTH_SHORT).show()
             }else if(password.length < 6){
-                binding.signUPProgressBar.visibility= View.GONE
+                   binding.signUPProgressBar.visibility= View.GONE
                 binding.signUpPassword.error="A senha deve ter mais de 6 digitos"
                 Toast.makeText(activity,"A senha deve ter mais de 6 digitos", Toast.LENGTH_SHORT).show()
             }else if(password != cPassword){
@@ -91,6 +91,12 @@ class SignUpFragment : Fragment() {
                 binding.signUpCEmail.error="Os Emails não batem"
                 Toast.makeText(activity,"Os Emails não batem", Toast.LENGTH_SHORT).show()
             }else{
+                (activity as? SignActivity)?.let {
+                    it.user.email = email
+                    it.user.name = name
+                    it.user.phone = phone
+                    it.user.password = password
+                }
                 findNavController().navigate(R.id.action_SignUp_to_SignUpAddress)
             }
         }
