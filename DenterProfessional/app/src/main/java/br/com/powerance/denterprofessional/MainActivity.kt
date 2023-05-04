@@ -6,6 +6,8 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
@@ -54,18 +56,17 @@ class MainActivity : AppCompatActivity() {
         // invocar as permissões para notificar.
         auth = FirebaseAuth.getInstance()
 
-        val intent : Intent
-
-        if(auth.currentUser==null){
-            intent = Intent(this, SignActivity::class.java)
-            startActivity(intent)
-            this.finish()
-        }else{
-            intent = Intent(this, MenuActivity::class.java)
-            startActivity(intent)
-            this.finish()
-        }
-
-
+        Handler(Looper.getMainLooper()).postDelayed({
+            val intent : Intent
+            if(auth.currentUser==null){
+                intent = Intent(this, SignActivity::class.java)
+                startActivity(intent)
+                this.finish()
+            }else{
+                intent = Intent(this, MenuActivity::class.java)
+                startActivity(intent)
+                this.finish()
+            }
+        },2500)
     }
 }
