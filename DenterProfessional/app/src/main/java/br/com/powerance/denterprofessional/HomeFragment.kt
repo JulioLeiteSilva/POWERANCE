@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import br.com.powerance.denterprofessional.databinding.FragmentHomeBinding
 import br.com.powerance.denterprofessional.databinding.FragmentSignInBinding
+import br.edu.puc.contactlist.emergencyAdapter
 
 class HomeFragment : Fragment() {
 
@@ -18,9 +20,17 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val dataSetDeEmergencias = emergenciesList()
+        val emergencyAdapter = emergencyAdapter(dataSetDeEmergencias)
+        val recyclerView: RecyclerView? = view?.findViewById(R.id.rvEmergencies)
+
+        if (recyclerView != null) {
+            recyclerView.adapter = emergencyAdapter
+        }
         return binding.root
 
     }

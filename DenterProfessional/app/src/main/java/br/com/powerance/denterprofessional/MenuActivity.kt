@@ -17,6 +17,7 @@ class MenuActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(HomeFragment())
@@ -24,7 +25,7 @@ class MenuActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
 
-                R.id.home -> replaceFragment(HomeFragment())
+                R.id.emergency -> replaceFragment(HomeFragment())
                 R.id.profile -> replaceFragment(UserProfileFragment())
 
                 else ->{
