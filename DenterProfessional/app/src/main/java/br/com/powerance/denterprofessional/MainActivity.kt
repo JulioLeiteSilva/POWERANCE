@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
 //        }
 //    }
 
+
+
 //    private fun askNotificationPermission() {
 //        // This is only necessary for API level >= 33 (TIRAMISU)
 //        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.TIRAMISU) {

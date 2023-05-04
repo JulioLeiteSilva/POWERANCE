@@ -17,6 +17,7 @@ class SignActivity : AppCompatActivity() {
     public var user = User("email","name","phone","","","","","","",false,"","")
     fun storeUserId(uid: String){
         userPreferencesRepository.uid = uid
+        user.uid = uid
     }
 
     fun getUserUid(): String{

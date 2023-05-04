@@ -52,7 +52,6 @@ class SignUpMiniResumeFragment : Fragment() {
             }else{
                 (activity as? SignActivity)?.let {
                     it.user.miniResume = miniResume
-                    it.user.fcmToken = (activity as SignActivity).getFcmToken()
                 }
                 signUpNewAccount()
             }
@@ -62,24 +61,24 @@ class SignUpMiniResumeFragment : Fragment() {
     private fun signUpNewAccount(){
         auth = Firebase.auth
         auth.createUserWithEmailAndPassword((activity as SignActivity).user.email,(activity as SignActivity).user.password)
-            .addOnCompleteListener(this.requireActivity()) { task ->
+            .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
-                    (activity as SignActivity).user.uid = user!!.uid
                     (activity as SignActivity).storeUserId(user!!.uid)
+                    //(activity as SignActivity).user.uid = (activity as SignActivity).getUserUid()
                     // atualizar o perfil do usuário com os dados chamando a function.
                     updateUserProfile()
-                        .addOnCompleteListener(this.requireActivity()) { res ->
+                        .addOnCompleteListener(requireActivity()) { res ->
                             // conta criada com sucesso.
                             if(res.result.status == "SUCCESS"){
-                                hideKeyboard()
                                 Snackbar.make(requireView(),"Conta cadastrada! Pode fazer o login!",
                                     Snackbar.LENGTH_LONG).show()
-                                findNavController().navigate(R.id.action_SignUp_to_SignIn)
+                                findNavController().navigate(R.id.action_SignUpMiniResume_to_SignIn)
                             }else{
-                                Snackbar.make(requireView(),"Conta nao! Pode fazer o login!",
-                                    Snackbar.LENGTH_LONG).show()
+//                                Snackbar.make(requireView(),res.result.payload.toString(),
+//                                    Snackbar.LENGTH_LONG).show()
+                                binding.signUpMiniResume.setText(res.result.payload.toString())
                             }
                         }
 
