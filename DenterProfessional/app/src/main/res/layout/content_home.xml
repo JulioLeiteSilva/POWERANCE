@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="169dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/logo_teste" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/emergency_name_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="Nome: John Doe"/>
+
+            <TextView
+                android:id="@+id/emergency_phone_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Telefone: (11) 9999-9999"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/emergency_photo1_imageview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/messi_careca"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"/>
+
+                <ImageView
+                    android:id="@+id/emergency_photo2_imageview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/messi_careca"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/emergency_date_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Data e horário: 01/01/2023, 13:30"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:layout_marginTop="16dp">
+
+                <Button
+                    android:id="@+id/accept_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aceitar"
+                    android:textSize="16sp"
+                    android:background="@color/teal_700"/>
+
+                <Button
+                    android:id="@+id/reject_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recusar"
+                    android:textSize="16sp"
+                    android:background="@color/teal_700"
+                    android:layout_marginStart="16dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
