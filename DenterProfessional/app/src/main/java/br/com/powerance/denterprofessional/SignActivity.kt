@@ -1,12 +1,15 @@
 package br.com.powerance.denterprofessional
 
+import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.findNavController
 import br.com.powerance.denterprofessional.databinding.ActivitySignBinding
 import br.com.powerance.denterprofessional.datastore.UserPreferencesRepository
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
 
 
@@ -25,11 +28,13 @@ class SignActivity : AppCompatActivity() {
     }
 
     private fun storeFcmToken(){
-        Firebase.messaging.token.addOnCompleteListener(OnCompleteListener { task ->
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
+                Log.w(ContentValues.TAG, "Fetching FCM registration token failed", task.exception)
                 return@OnCompleteListener
             }
-            // guardar esse token.
+
+            // Get new FCM registration token
             userPreferencesRepository.fcmToken = task.result
         })
     }
@@ -37,6 +42,7 @@ class SignActivity : AppCompatActivity() {
     fun getFcmToken(): String{
         return userPreferencesRepository.fcmToken
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,7 +50,7 @@ class SignActivity : AppCompatActivity() {
 
         binding = ActivitySignBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        // guardar o token FCM pois iremos precisar.
-        storeFcmToken();
+        storeFcmToken()
+        user.fcmToken = userPreferencesRepository.fcmToken
     }
 }
