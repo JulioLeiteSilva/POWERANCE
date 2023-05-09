@@ -20,13 +20,13 @@ class MenuActivity : AppCompatActivity() {
 
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(HomeFragment())
+        replaceFragment(EmergencyFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
 
-                R.id.emergency -> replaceFragment(HomeFragment())
-                R.id.profile -> replaceFragment(UserProfileFragment())
+                R.id.mEmergency -> replaceFragment(EmergencyFragment())
+                R.id.mProfile -> replaceFragment(UserProfileFragment())
 
                 else ->{
 
