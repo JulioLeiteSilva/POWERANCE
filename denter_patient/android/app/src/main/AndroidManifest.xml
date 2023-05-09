@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.powerance.DenterProfessional.denter_patient">
+    package="com.example.teste_camera">
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
    <application
-        android:label="denter_patient"
+        android:label="teste_camera"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
