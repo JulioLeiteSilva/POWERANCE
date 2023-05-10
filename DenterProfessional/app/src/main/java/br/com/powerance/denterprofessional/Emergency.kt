@@ -5,5 +5,6 @@ data class Emergency(
     val telefone: String,
     val fotos: Int,
     val status: String,
-    val dataHora: String
+    val descricao: String,
+    val uid: String
                         )

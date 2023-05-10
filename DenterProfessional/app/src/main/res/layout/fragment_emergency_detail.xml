@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmergencyDetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="169dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/logo_teste" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvDEmergencyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="Nome: Messi Careca"/>
+
+            <TextView
+                android:id="@+id/tvDEmergencyPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Telefone: (11) 9999-9999"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/ivEmergency1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/messi_careca"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"/>
+
+                <ImageView
+                    android:id="@+id/ivEmergency2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/messi_careca"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvDEmergencyDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Aqui vai a descrição da emergencia"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:layout_marginTop="16dp">
+
+                <Button
+                    android:id="@+id/bAccept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aceitar"
+                    android:textSize="16sp"
+                    android:background="@color/teal_700"/>
+
+                <Button
+                    android:id="@+id/bReject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recusar"
+                    android:textSize="16sp"
+                    android:background="@color/teal_700"
+                    android:layout_marginStart="16dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

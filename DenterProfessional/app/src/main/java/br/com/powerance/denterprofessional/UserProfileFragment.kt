@@ -29,7 +29,7 @@ class UserProfileFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvUsertoEmergencie.setOnClickListener {
-            findNavController().navigate(R.id.action_User_to_Home)
+            findNavController().navigate(R.id.action_User_to_Emergency)
         }
 
     }

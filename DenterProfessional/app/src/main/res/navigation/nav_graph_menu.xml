@@ -3,25 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_menu"
-    app:startDestination="@id/Home">
+    app:startDestination="@id/Emergency">
 
     <fragment
         android:id="@+id/userProfile"
         android:name="br.com.powerance.denterprofessional.UserProfileFragment"
         tools:layout="@layout/fragment_user_profile">
         <action
-            android:id="@+id/action_User_to_Home"
-            app:destination="@+id/Home"/>
+            android:id="@+id/action_User_to_Emergency"
+            app:destination="@+id/Emergency"/>
     </fragment>
 
     <fragment
-        android:id="@+id/Home"
-        android:name="br.com.powerance.denterprofessional.HomeFragment"
-        tools:layout="@layout/fragment_home">
-
+        android:id="@+id/Emergency"
+        android:name="br.com.powerance.denterprofessional.EmergencyFragment"
+        tools:layout="@layout/fragment_emergency">
         <action
-            android:id="@+id/action_Home_To_Profile"
+            android:id="@+id/action_Emergency_to_User"
             app:destination="@+id/userProfile"/>
+        <action
+            android:id="@+id/action_Emergency_to_Details"
+            app:destination="@+id/EmergencyDetails"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/EmergencyDetails"
+        android:name="br.com.powerance.denterprofessional.EmergencyDetailFragment"
+        tools:layout="@layout/fragment_emergency_detail">
+        <action
+            android:id="@+id/action_Details_to_Emergency"
+            app:destination="@id/Emergency"/>
+    </fragment>
+
 
 </navigation>
