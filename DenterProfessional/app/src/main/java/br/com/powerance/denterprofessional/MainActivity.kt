@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
-        if (!isGranted) {
-            // mostrar o fragment
+        if (isGranted) {
+            verifyAuth()
         }
     }
 
@@ -37,11 +37,12 @@ class MainActivity : AppCompatActivity() {
                 PackageManager.PERMISSION_GRANTED
             ) {
                 // FCM SDK (and your app) can post notifications.
+                verifyAuth()
             } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
                 // TODO: display an educational UI explaining to the user the features that will be enabled
                 //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
                 //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
-                //       If the user selects "No thanks," allow the user to continue without notifications.
+                //       If the user selects "No thanks," allow the user to continue without notifications
             } else {
                 // Directly ask for the permission
                 requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
@@ -49,14 +50,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        // invocar as permissões para notificar.
-        auth = FirebaseAuth.getInstance()
-
-        Handler(Looper.getMainLooper()).postDelayed({
+    private fun verifyAuth(){
             val intent : Intent
             if(auth.currentUser==null){
                 intent = Intent(this, SignActivity::class.java)
@@ -67,6 +61,16 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 this.finish()
             }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        // invocar as permissões para notificar.
+        auth = FirebaseAuth.getInstance()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            askNotificationPermission()
         },2500)
     }
 }
