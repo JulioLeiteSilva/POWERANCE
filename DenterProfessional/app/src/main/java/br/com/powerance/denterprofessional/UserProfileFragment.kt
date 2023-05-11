@@ -11,7 +11,10 @@ import br.com.powerance.denterprofessional.databinding.FragmentUserProfileBindin
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.ktx.functions
+import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
@@ -48,11 +51,13 @@ class UserProfileFragment: Fragment() {
         getUserProfile()
             .addOnCompleteListener(requireActivity()){res ->
                 if(res.result.status == "ERROR"){
+
                     Snackbar.make(requireView(),"Algo de estranho aconteceu! Tente novamente",
                         Snackbar.LENGTH_LONG).show()
                 }else{
-
-                    binding.textView.text = res.result.payload?.name
+                    var profile = gson.fromJson((res.result?.payload as String), Payload::class.java)
+                    binding.textView.text = profile.name
+                    binding.textView2.text = profile.email
                 }
             }
 
@@ -64,10 +69,14 @@ class UserProfileFragment: Fragment() {
     }
 
     private fun getUserProfile(): Task<CustomResponse> {
-        val user = (activity as? SignActivity)?.userPreferencesRepository
+        functions = Firebase.functions("southamerica-east1")
+
+        auth = Firebase.auth
+        val user = auth.currentUser
+        val uid = user!!.uid
 
         val data = hashMapOf(
-            "uid" to user!!.uid
+            "uid" to uid
         )
 
         return functions
