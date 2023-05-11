@@ -16,7 +16,7 @@ import com.google.firebase.messaging.ktx.messaging
 class SignActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignBinding
-    private lateinit var userPreferencesRepository: UserPreferencesRepository
+    public lateinit var userPreferencesRepository: UserPreferencesRepository
     public var user = User("email","name","phone","","","","","","",false,"","")
     fun storeUserId(uid: String){
         userPreferencesRepository.uid = uid
@@ -50,6 +50,7 @@ class SignActivity : AppCompatActivity() {
 
         binding = ActivitySignBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         storeFcmToken()
         user.fcmToken = userPreferencesRepository.fcmToken
     }

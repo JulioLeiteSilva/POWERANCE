@@ -4,9 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import br.com.powerance.denterprofessional.databinding.FragmentUserProfileBinding
+import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.functions.FirebaseFunctions
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 
 
 class UserProfileFragment: Fragment() {
@@ -14,6 +21,12 @@ class UserProfileFragment: Fragment() {
     private var _binding: FragmentUserProfileBinding? = null
 
     private val binding get() = _binding!!
+
+    private lateinit var functions: FirebaseFunctions
+
+    private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,11 +45,40 @@ class UserProfileFragment: Fragment() {
             findNavController().navigate(R.id.action_User_to_Home)
         }
 
+        getUserProfile()
+            .addOnCompleteListener(requireActivity()){res ->
+                if(res.result.status == "ERROR"){
+                    Snackbar.make(requireView(),"Algo de estranho aconteceu! Tente novamente",
+                        Snackbar.LENGTH_LONG).show()
+                }else{
+
+                    binding.textView.text = res.result.payload?.name
+                }
+            }
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun getUserProfile(): Task<CustomResponse> {
+        val user = (activity as? SignActivity)?.userPreferencesRepository
+
+        val data = hashMapOf(
+            "uid" to user!!.uid
+        )
+
+        return functions
+            .getHttpsCallable("getUserProfileByUid")
+            .call(data)
+            .continueWith { task ->
+                val result = gson.fromJson((task.result?.data as String), CustomResponse::class.java)
+                result
+            }
+    }
+
+
 
 }
