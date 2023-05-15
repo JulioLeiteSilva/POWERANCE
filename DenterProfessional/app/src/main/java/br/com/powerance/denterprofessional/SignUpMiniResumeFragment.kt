@@ -78,7 +78,7 @@ class SignUpMiniResumeFragment : Fragment() {
                             }else{
 //                                Snackbar.make(requireView(),res.result.payload.toString(),
 //                                    Snackbar.LENGTH_LONG).show()
-                                binding.signUpMiniResume.setText(res.result.payload.toString())
+                                binding.signUpMiniResume.setText(res.result.message)
                             }
                         }
 
@@ -115,7 +115,7 @@ class SignUpMiniResumeFragment : Fragment() {
         )
 
         return functions
-            .getHttpsCallable("setUserProfile")
+            .getHttpsCallable("setUserProfileUid")
             .call(data)
             .continueWith { task ->
 
