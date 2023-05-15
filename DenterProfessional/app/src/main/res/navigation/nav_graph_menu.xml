@@ -16,6 +16,7 @@
             android:id="@+id/action_User_to_DetailProfile"
             app:destination="@+id/userDetailProfile"/>
     </fragment>
+
     <fragment
         android:id="@+id/userDetailProfile"
         android:name="br.com.powerance.denterprofessional.UserDetailProfileFragment"

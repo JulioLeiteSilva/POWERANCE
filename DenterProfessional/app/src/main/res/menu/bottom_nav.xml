@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="Emergências"
-        android:id="@+id/mEmergency"
+        android:id="@+id/Emergency"
         android:icon="@drawable/emergencia"/>
 
     <item android:title="Histórico"
@@ -10,7 +10,7 @@
         android:icon="@drawable/historic"/>
 
     <item android:title="Profile"
-        android:id="@+id/mProfile"
+        android:id="@+id/userProfile"
         android:icon="@drawable/baseline_person_24"/>
 
 </menu>
