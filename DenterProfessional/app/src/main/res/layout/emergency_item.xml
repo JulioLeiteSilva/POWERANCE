@@ -3,17 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:gravity="top"
+        android:id="@+id/itemEmergency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        tools:ignore="MissingConstraints"
-        android:background="@color/teal_700">
+        android:background="@drawable/background_item"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/tvEmergencyName"
