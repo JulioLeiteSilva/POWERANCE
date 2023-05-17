@@ -47,20 +47,65 @@ class UserProfileFragment: Fragment() {
         binding.tvUsertoEmergencie.setOnClickListener {
             findNavController().navigate(R.id.action_User_to_Emergency)
         }
-
-        getUserProfile()
-            .addOnCompleteListener(requireActivity()){res ->
-                if(res.result.status == "ERROR"){
-
-                    Snackbar.make(requireView(),"Algo de estranho aconteceu! Tente novamente",
+        binding.button.setOnClickListener{
+            findNavController().navigate(R.id.action_User_to_DetailProfile)
+        }
+//        getUserProfile()
+//            .addOnCompleteListener(requireActivity()){res ->
+//                if(res.result.status == "ERROR"){
+//
+//                    Snackbar.make(requireView(),"Algo de estranho aconteceu! Tente novamente",
+//                        Snackbar.LENGTH_LONG).show()
+//                }else{
+//                    var profile = gson.fromJson((res.result?.payload as String), Payload::class.java)
+//                    binding.textView.text = profile.name
+//                    binding.textView2.text = profile.email
+//
+//                    binding.switch1.setOnCheckedChangeListener { _, isChecked ->
+//                        var status = false
+//                        if (isChecked) {
+//                            status = true
+//                            Snackbar.make(requireView(),"ssssssssssss",
+//                                Snackbar.LENGTH_LONG).show()
+//                        }
+//                        updateUserProfile(status)
+//                    }
+//                }
+//            }
+        val menuActivity = requireActivity() as MenuActivity
+        val dataProfile = menuActivity.dataProfile
+        if(dataProfile.result.status == "ERROR"){
+            Snackbar.make(requireView(),"Algo de estranho aconteceu! Tente novamente",
                         Snackbar.LENGTH_LONG).show()
-                }else{
-                    var profile = gson.fromJson((res.result?.payload as String), Payload::class.java)
-                    binding.textView.text = profile.name
-                    binding.textView2.text = profile.email
+        }else{
+            var profile = gson.fromJson((dataProfile.result?.payload as String), Payload::class.java)
+            binding.textView.text = profile.name
+            binding.textView2.text = profile.email
+            binding.switch1.setOnCheckedChangeListener { _, isChecked ->
+                var status = false
+                if (isChecked) {
+                    status = true
                 }
-            }
+                updateUserProfile(status)
+                    .addOnCompleteListener(requireActivity()) { res ->
+                        // conta criada com sucesso.
+                        if(res.result.status == "SUCCESS"){
+                            var payload = gson.fromJson((res.result?.payload as String), Payload::class.java)
+                            if(payload.status == true){
+                                Snackbar.make(requireView(),"Você está ativo!",
+                                    Snackbar.LENGTH_LONG).show()
+                            }else{
+                                Snackbar.make(requireView(),"Você está inativo!",
+                                    Snackbar.LENGTH_LONG).show()
+                            }
+                        }else{
+                            Snackbar.make(requireView(),res.result.message.toString(),
+                                Snackbar.LENGTH_LONG).show()
+                        }
+                    }
 
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -68,7 +113,27 @@ class UserProfileFragment: Fragment() {
         _binding = null
     }
 
-    private fun getUserProfile(): Task<CustomResponse> {
+//    private fun getUserProfile(): Task<CustomResponse> {
+//        functions = Firebase.functions("southamerica-east1")
+//
+//        auth = Firebase.auth
+//        val user = auth.currentUser
+//        val uid = user!!.uid
+//
+//        val data = hashMapOf(
+//            "uid" to uid
+//        )
+//
+//        return functions
+//            .getHttpsCallable("getUserProfileByUid")
+//            .call(data)
+//            .continueWith { task ->
+//                val result = gson.fromJson((task.result?.data as String), CustomResponse::class.java)
+//                result
+//            }
+//    }
+
+    private fun updateUserProfile(status: Boolean?): Task<CustomResponse> {
         functions = Firebase.functions("southamerica-east1")
 
         auth = Firebase.auth
@@ -76,18 +141,17 @@ class UserProfileFragment: Fragment() {
         val uid = user!!.uid
 
         val data = hashMapOf(
-            "uid" to uid
+            "uid" to uid,
+            "status" to status
         )
 
         return functions
-            .getHttpsCallable("getUserProfileByUid")
+            .getHttpsCallable("updateUserProfile")
             .call(data)
             .continueWith { task ->
                 val result = gson.fromJson((task.result?.data as String), CustomResponse::class.java)
                 result
             }
     }
-
-
 
 }

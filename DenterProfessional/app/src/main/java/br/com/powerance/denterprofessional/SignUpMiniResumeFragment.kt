@@ -115,7 +115,7 @@ class SignUpMiniResumeFragment : Fragment() {
         )
 
         return functions
-            .getHttpsCallable("setUserProfile")
+            .getHttpsCallable("setUserProfileUid")
             .call(data)
             .continueWith { task ->
 
