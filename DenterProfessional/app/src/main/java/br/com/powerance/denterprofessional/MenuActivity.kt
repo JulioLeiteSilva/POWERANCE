@@ -30,18 +30,6 @@ class MenuActivity : AppCompatActivity() {
         navController = findNavController(R.id.nav_host_fragment_content_menu)
         setupSmoothBottomMenu()
 
-//        binding.bottomNavigationView.setOnItemSelectedListener {
-//            when(it.itemId){
-//
-//                R.id.Emergency -> replaceFragment(EmergencyFragment())
-//                R.id.userProfile -> replaceFragment(UserProfileFragment())
-//
-//                else ->{
-//
-//                }
-//            }
-//            true
-//        }
     }
     private fun setupSmoothBottomMenu() {
         val popupMenu = PopupMenu(this,null)
@@ -54,12 +42,12 @@ class MenuActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    private fun replaceFragment(fragment : Fragment){
-
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.nav_host_fragment_content_menu,fragment)
-        fragmentTransaction.commit()
-    }
+//    private fun replaceFragment(fragment : Fragment){
+//
+//        val fragmentManager = supportFragmentManager
+//        val fragmentTransaction = fragmentManager.beginTransaction()
+//        fragmentTransaction.replace(R.id.nav_host_fragment_content_menu,fragment)
+//        fragmentTransaction.commit()
+//    }
 
 }

@@ -1,8 +1,11 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".EmergencyDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,15 +25,15 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/emergency_name_textview"
+                android:id="@+id/tvDEmergencyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:text="Nome: John Doe"/>
+                android:text="Nome: Messi Careca"/>
 
             <TextView
-                android:id="@+id/emergency_phone_textview"
+                android:id="@+id/tvDEmergencyPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -43,7 +46,7 @@
                 android:layout_marginTop="8dp">
 
                 <ImageView
-                    android:id="@+id/emergency_photo1_imageview"
+                    android:id="@+id/ivEmergency1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/messi_careca"
@@ -53,7 +56,7 @@
                     android:layout_marginEnd="8dp"/>
 
                 <ImageView
-                    android:id="@+id/emergency_photo2_imageview"
+                    android:id="@+id/ivEmergency2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/messi_careca"
@@ -62,24 +65,25 @@
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"/>
 
+
             </LinearLayout>
 
             <TextView
-                android:id="@+id/emergency_date_textview"
+                android:id="@+id/tvDEmergencyDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="Data e horário: 01/01/2023, 13:30"/>
+                android:text="Aqui vai a descrição da emergencia"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="end"
                 android:layout_marginTop="16dp">
 
                 <Button
-                    android:id="@+id/accept_button"
+                    android:id="@+id/bAccept"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Aceitar"
@@ -87,7 +91,7 @@
                     android:background="@color/teal_700"/>
 
                 <Button
-                    android:id="@+id/reject_button"
+                    android:id="@+id/bReject"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Recusar"
@@ -100,4 +104,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

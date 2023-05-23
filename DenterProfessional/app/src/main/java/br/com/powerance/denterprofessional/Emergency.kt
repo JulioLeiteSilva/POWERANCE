@@ -1,10 +1,14 @@
 package br.com.powerance.denterprofessional
 
+import android.media.Image
+
 data class Emergency(
     val nome: String,
     val telefone: String,
-    val fotos: Int,
+    val fotos: String,
     val status: String,
-    val descricao: String,
-    val uid: String
-                        )
+    val uidSocorrista: String,
+    val fcmTokenSocorrista: String
+    ){
+    constructor(): this("","","","","","")
+}

@@ -5,15 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.powerance.denterprofessional.databinding.FragmentEmergencyBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class EmergencyFragment : Fragment() {
 
     private var _binding: FragmentEmergencyBinding? = null
 
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,13 +31,26 @@ class EmergencyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dataSetOfEmergency = emergenciesList()
-        val emergencyAdapter = EmergencyAdapter(dataSetOfEmergency)
+        var emergencyList: ArrayList<Emergency> = arrayListOf()
+        var db = Firebase.firestore
         val recyclerView: RecyclerView? = view.findViewById(R.id.rvEmergencies)
 
-        if (recyclerView != null) {
-            recyclerView.adapter = emergencyAdapter
-        }
+        db = FirebaseFirestore.getInstance()
+
+        db.collection("emergencyTeste").get()
+            .addOnSuccessListener {
+                if (!it.isEmpty){
+                    for (data in it.documents){
+                        val emergency: Emergency? = data.toObject(Emergency::class.java)
+                        if (emergency != null){
+                            emergencyList.add(emergency)
+                        }
+                    }
+                }
+                if (recyclerView != null) {
+                    recyclerView.adapter = EmergencyAdapter(emergencyList)
+                }
+            }
 
     }
 
