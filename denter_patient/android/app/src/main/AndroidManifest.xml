@@ -1,8 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.teste_camera">
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
-   <application
-        android:label="teste_camera"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
+        android:label="denter_patient"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
