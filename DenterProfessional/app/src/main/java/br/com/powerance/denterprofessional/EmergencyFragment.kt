@@ -1,19 +1,21 @@
 package br.com.powerance.denterprofessional
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import br.com.powerance.denterprofessional.databinding.FragmentEmergencyBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import okhttp3.internal.Util
 
-class EmergencyFragment : Fragment() {
+class EmergencyFragment : Fragment(), EmergencyAdapter.ClickEmergency {
 
     private var _binding: FragmentEmergencyBinding? = null
 
@@ -31,7 +33,10 @@ class EmergencyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var emergencyList: ArrayList<Emergency> = arrayListOf()
+        val context: Context = requireContext()
+
+
+        val emergencyList: ArrayList<Emergency> = arrayListOf()
         var db = Firebase.firestore
         val recyclerView: RecyclerView? = view.findViewById(R.id.rvEmergencies)
 
@@ -48,10 +53,24 @@ class EmergencyFragment : Fragment() {
                     }
                 }
                 if (recyclerView != null) {
-                    recyclerView.adapter = EmergencyAdapter(emergencyList)
+                    recyclerView.adapter = EmergencyAdapter(context,emergencyList, this)
                 }
             }
 
+    }
+
+    override fun clickEmergency(emergency: Emergency) {
+
+//        Toast.makeText(requireActivity(), "Authentication failed.", Toast.LENGTH_SHORT).show()
+
+        val intent = Intent(context,EmergencyDetailActivity::class.java)
+        intent.putExtra("emergenciaNome",emergency.nome)
+//        intent.putExtra("emergenciaTelefone",emergency.telefone)
+//        intent.putExtra("emergenciaFcmToken",emergency.fcmToken)
+//        intent.putExtra("emergenciaUid",emergency.uid)
+//        intent.putExtra("emergenciaStatus",emergency.status)
+
+        startActivity(intent)
     }
 
 }
