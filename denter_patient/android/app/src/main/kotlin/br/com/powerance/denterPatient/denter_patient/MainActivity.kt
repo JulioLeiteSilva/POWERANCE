@@ -1,4 +1,4 @@
-package br.com.powerance.DenterProfessional.denter_patient
+package br.com.powerance.denterPatient.denter_patient
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,6 +1,6 @@
-# teste_camera
+# denter_patient
 
-A new Flutter project.
+Denter Patient
 
 ## Getting Started
 
