@@ -42,4 +42,7 @@ data class Emergency(
             return arrayOfNulls(size)
         }
     }
-}
+        constructor(): this("","","","","","")
+    }
+
+
