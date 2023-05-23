@@ -1,6 +1,6 @@
 # denter_patient
 
-Denter Patient
+Denter for patient
 
 ## Getting Started
 
