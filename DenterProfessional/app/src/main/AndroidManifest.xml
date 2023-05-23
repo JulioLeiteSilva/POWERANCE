@@ -14,6 +14,14 @@
         android:theme="@style/Theme.DenterProfessional"
         tools:targetApi="31">
         <activity
+            android:name=".UserDetailProfileActivity"
+            android:exported="true"
+            android:label="@string/title_activity_user_detail_profile"
+            android:theme="@style/Theme.DenterProfessional">
+
+        </activity>
+
+        <activity
             android:name=".MenuActivity"
             android:exported="false" />
         <activity
@@ -32,7 +40,6 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_check" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/teal_200" />
@@ -44,7 +51,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

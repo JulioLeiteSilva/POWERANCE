@@ -17,9 +17,10 @@ import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
+import org.json.JSONObject
 
 // TO
-class UserDetailProfileFragment : Fragment(), TextWatcher {
+class UserDetailProfileFragment : Fragment() {
 
     private var _binding: FragmentUserDetailProfileBinding? = null
     private lateinit var auth: FirebaseAuth
@@ -27,23 +28,15 @@ class UserDetailProfileFragment : Fragment(), TextWatcher {
     private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
     private val binding get() = _binding!!
 
-    private val menuActivity = requireActivity() as MenuActivity
-    private val dataProfile = menuActivity.dataProfile
 
-    var profile = gson.fromJson((dataProfile.result?.payload as String), Payload::class.java)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding.tiName.addTextChangedListener(this)
-        binding.tiFone.addTextChangedListener(this)
-        binding.tiResume.addTextChangedListener(this)
-        binding.tiCep.addTextChangedListener(this)
-        binding.tiAddress1.addTextChangedListener(this)
-        binding.tiAddress2.addTextChangedListener(this)
-        binding.tiAddress3.addTextChangedListener(this)
+
 
         _binding = FragmentUserDetailProfileBinding.inflate(inflater,container,false)
         return binding.root
@@ -51,60 +44,31 @@ class UserDetailProfileFragment : Fragment(), TextWatcher {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val menuActivity = requireActivity() as MenuActivity
+        val dataProfile = menuActivity.dataProfile
+
+        var profile = gson.fromJson((dataProfile.result?.payload as String), Payload::class.java)
 
         binding.tiName.setText(profile.name)
         binding.tiFone.setText(profile.phone)
-//        binding.tiEmail.setText(profile.email)
-//        binding.tiPassword.setText(profile.pa)
         binding.tiResume.setText(profile.miniResume)
         binding.tiCep.setText(profile.cep)
         binding.tiAddress1.setText(profile.address1)
-        binding.tiAddress2.setText(profile.address2)
-        binding.tiAddress3.setText(profile.address3)
-        if(profile.name == binding.tiName.text.toString() || profile.phone == binding.tiFone.text.toString() ||profile.miniResume == binding.tiResume.text.toString() ||profile.cep == binding.tiCep.text.toString() ||profile.address1 == binding.tiAddress1.text.toString() ||profile.address2 == binding.tiAddress2.text.toString() ||profile.address3 == binding.tiAddress3.text.toString()){
-            binding.btnNext.isEnabled = false
-        }
-//        binding.btnNext.setOnClickListener{
+        binding.tiAddress2.setText(profile.address2.toString())
+        binding.tiAddress3.setText(profile.address3.toString())
+
+
+        binding.btnNext.setOnClickListener{
+//            verificacao(binding.tiName.text.toString(),binding.tiFone.text.toString(),binding.tiResume.text.toString(),binding.tiCep.text.toString(),binding.tiAddress1.text.toString(),binding.tiAddress2.text.toString(),binding.tiAddress3.text.toString(), dataProfile)
 //            findNavController().navigate(R.id.action_DetailProfile_to_user)
-//        }
-
-
+        }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-    private fun getUserProfile(): Task<CustomResponse> {
-        functions = Firebase.functions("southamerica-east1")
 
-        auth = Firebase.auth
-        val user = auth.currentUser
-        val uid = user!!.uid
-
-        val data = hashMapOf(
-            "uid" to uid
-        )
-
-        return functions
-            .getHttpsCallable("getUserProfileByUid")
-            .call(data)
-            .continueWith { task ->
-                val result = gson.fromJson((task.result?.data as String), CustomResponse::class.java)
-                result
-            }
-    }
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-    }
-    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        // Chamado durante a alteração do texto
-    }
-    override fun afterTextChanged(s: Editable?) {
-        val novoTxt = s.toString()
-
-        if(novoTxt == profile.name ||novoTxt == profile.phone ||novoTxt == profile.cep ||novoTxt == profile.miniResume ||novoTxt == profile.address1 ||novoTxt == profile.address2 ||novoTxt == profile.address3){
-            binding.btnNext.isEnabled = false
-        }
-    }
 }

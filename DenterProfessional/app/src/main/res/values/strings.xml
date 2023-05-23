@@ -14,4 +14,6 @@
     <string name="default_notification_channel_id" translatable="false">canal_padrao</string>
     <string name="fcm_default_title_message" translatable="false">Mensagem</string>
     <string name="notifications_are_disabled_fragment_label">Notificações desabilitadas</string>
+    <string name="title_activity_users_detai_profile">UsersDetaiProfile</string>
+    <string name="title_activity_user_detail_profile">UserDetailProfileActivity</string>
 </resources>

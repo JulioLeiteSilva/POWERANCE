@@ -1,5 +1,6 @@
 package br.com.powerance.denterprofessional
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,7 @@ class UserProfileFragment: Fragment() {
 
     private lateinit var auth: FirebaseAuth
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,30 +50,11 @@ class UserProfileFragment: Fragment() {
             findNavController().navigate(R.id.action_User_to_Emergency)
         }
         binding.button.setOnClickListener{
-            findNavController().navigate(R.id.action_User_to_DetailProfile)
+            val intent = Intent(activity, UserDetailProfileActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
         }
-//        getUserProfile()
-//            .addOnCompleteListener(requireActivity()){res ->
-//                if(res.result.status == "ERROR"){
-//
-//                    Snackbar.make(requireView(),"Algo de estranho aconteceu! Tente novamente",
-//                        Snackbar.LENGTH_LONG).show()
-//                }else{
-//                    var profile = gson.fromJson((res.result?.payload as String), Payload::class.java)
-//                    binding.textView.text = profile.name
-//                    binding.textView2.text = profile.email
-//
-//                    binding.switch1.setOnCheckedChangeListener { _, isChecked ->
-//                        var status = false
-//                        if (isChecked) {
-//                            status = true
-//                            Snackbar.make(requireView(),"ssssssssssss",
-//                                Snackbar.LENGTH_LONG).show()
-//                        }
-//                        updateUserProfile(status)
-//                    }
-//                }
-//            }
+
         val menuActivity = requireActivity() as MenuActivity
         val dataProfile = menuActivity.dataProfile
         if(dataProfile.result.status == "ERROR"){
