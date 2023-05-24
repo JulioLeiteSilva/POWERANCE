@@ -45,7 +45,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
   pegarImagemGaleria() async {
     final PickedFile? imagemTemporaria =
         await  imagePicker.getImage(source: ImageSource.gallery);
