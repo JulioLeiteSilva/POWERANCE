@@ -17,14 +17,8 @@
             app:destination="@+id/userDetailProfile"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/userDetailProfile"
-        android:name="br.com.powerance.denterprofessional.UserDetailProfileFragment"
-        tools:layout="@layout/fragment_user_detail_profile">
-        <action
-            android:id="@+id/action_DetailProfile_to_user"
-            app:destination="@+id/userProfile"/>
-    </fragment>
+
+
     <fragment
         android:id="@+id/Emergency"
         android:name="br.com.powerance.denterprofessional.EmergencyFragment"

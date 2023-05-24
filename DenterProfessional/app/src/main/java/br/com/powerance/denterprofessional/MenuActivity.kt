@@ -17,6 +17,7 @@ import androidx.navigation.ui.setupWithNavController
 import br.com.powerance.denterprofessional.databinding.ActivityMenuBinding
 import br.com.powerance.denterprofessional.databinding.FragmentSignInBinding
 import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.functions.FirebaseFunctions
@@ -34,9 +35,19 @@ class MenuActivity : AppCompatActivity() {
     private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
 
     private lateinit var auth: FirebaseAuth
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataProfile = getUserProfile()
+            .addOnCompleteListener(this) { res ->
+                // conta criada com sucesso.
+                if(res.result.status == "SUCCESS"){
+
+                }else{
+
+                }
+            }
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -56,6 +67,8 @@ class MenuActivity : AppCompatActivity() {
 //            true
 //        }
     }
+
+
     private fun setupSmoothBottomMenu() {
         val popupMenu = PopupMenu(this,null)
         popupMenu.inflate(R.menu.bottom_nav)
@@ -67,14 +80,14 @@ class MenuActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-//    private fun replaceFragment(fragment : Fragment){
-//
-//        val fragmentManager = supportFragmentManager
-//        val fragmentTransaction = fragmentManager.beginTransaction()
-//        fragmentTransaction.replace(R.id.nav_host_fragment_content_menu,fragment)
-//        fragmentTransaction.commit()
-//    }
-    private fun getUserProfile(): Task<CustomResponse> {
+    private fun replaceFragment(fragment : Fragment){
+
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.nav_host_fragment_content_menu,fragment)
+        fragmentTransaction.commit()
+    }
+    private fun getUserProfile(): Task<CustomResponse>  {
         functions = Firebase.functions("southamerica-east1")
 
         auth = Firebase.auth
