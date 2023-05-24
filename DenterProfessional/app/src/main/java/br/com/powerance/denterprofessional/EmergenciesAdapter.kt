@@ -39,7 +39,6 @@ class EmergencyAdapter(val context: Context, var emergencies: ArrayList<Emergenc
 
         }
 
-
     }
 
     override fun getItemCount(): Int {

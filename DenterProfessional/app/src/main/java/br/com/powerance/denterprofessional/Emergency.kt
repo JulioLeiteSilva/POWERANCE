@@ -9,7 +9,7 @@ data class Emergency(
     val fotos: String,
     val status: String,
     val uid: String,
-    val fcmToken: String
+    val fcm: String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
@@ -26,7 +26,7 @@ data class Emergency(
         parcel.writeString(fotos)
         parcel.writeString(status)
         parcel.writeString(uid)
-        parcel.writeString(fcmToken)
+        parcel.writeString(fcm)
     }
 
     override fun describeContents(): Int {

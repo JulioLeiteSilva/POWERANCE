@@ -67,13 +67,13 @@ class MenuActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    private fun replaceFragment(fragment : Fragment){
-
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.nav_host_fragment_content_menu,fragment)
-        fragmentTransaction.commit()
-    }
+//    private fun replaceFragment(fragment : Fragment){
+//
+//        val fragmentManager = supportFragmentManager
+//        val fragmentTransaction = fragmentManager.beginTransaction()
+//        fragmentTransaction.replace(R.id.nav_host_fragment_content_menu,fragment)
+//        fragmentTransaction.commit()
+//    }
     private fun getUserProfile(): Task<CustomResponse> {
         functions = Firebase.functions("southamerica-east1")
 

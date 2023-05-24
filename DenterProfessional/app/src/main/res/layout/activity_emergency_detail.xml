@@ -25,19 +25,19 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/tvDEmergencyName"
+                android:id="@+id/tvEmergencyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:text="Nome: Messi Careca"/>
+                android:text="Nome:"/>
 
             <TextView
-                android:id="@+id/tvDEmergencyPhone"
+                android:id="@+id/tvEmergencyPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="Telefone: (11) 9999-9999"/>
+                android:text="Telefone:"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,9 +47,8 @@
 
                 <ImageView
                     android:id="@+id/ivEmergency1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/messi_careca"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     android:layout_weight="1"
@@ -57,26 +56,26 @@
 
                 <ImageView
                     android:id="@+id/ivEmergency2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/messi_careca"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"/>
 
-
+                <ImageView
+                    android:id="@+id/ivEmergency3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"/>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvDEmergencyDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="Aqui vai a descrição da emergencia"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="end"
@@ -98,7 +97,6 @@
                     android:textSize="16sp"
                     android:background="@color/teal_700"
                     android:layout_marginStart="16dp"/>
-
             </LinearLayout>
 
         </LinearLayout>

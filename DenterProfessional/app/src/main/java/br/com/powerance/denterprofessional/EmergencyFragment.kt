@@ -64,12 +64,7 @@ class EmergencyFragment : Fragment(), EmergencyAdapter.ClickEmergency {
 //        Toast.makeText(requireActivity(), "Authentication failed.", Toast.LENGTH_SHORT).show()
 
         val intent = Intent(context,EmergencyDetailActivity::class.java)
-        intent.putExtra("emergenciaNome",emergency.nome)
-//        intent.putExtra("emergenciaTelefone",emergency.telefone)
-//        intent.putExtra("emergenciaFcmToken",emergency.fcmToken)
-//        intent.putExtra("emergenciaUid",emergency.uid)
-//        intent.putExtra("emergenciaStatus",emergency.status)
-
+        intent.putExtra("emergencia",emergency)
         startActivity(intent)
     }
 
