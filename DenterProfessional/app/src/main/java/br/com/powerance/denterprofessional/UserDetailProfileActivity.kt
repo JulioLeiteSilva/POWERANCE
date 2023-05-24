@@ -2,21 +2,20 @@ package br.com.powerance.denterprofessional
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import android.telephony.PhoneNumberFormattingTextWatcher
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
-
 import br.com.powerance.denterprofessional.databinding.ActivityUserDetailBinding
-import br.com.powerance.denterprofessional.ui.theme.DenterProfessionalTheme
 import com.google.android.gms.tasks.Task
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
-import br.com.powerance.denterprofessional.MenuActivity
-import br.com.powerance.denterprofessional.databinding.FragmentUserDetailProfileBinding
+
+
 
 class UserDetailProfileActivity : AppCompatActivity() {
 
@@ -26,10 +25,6 @@ class UserDetailProfileActivity : AppCompatActivity() {
     private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
     private val binding get() = _binding!!
     lateinit var dataProfile: Task<CustomResponse>
-
-
-
-
 
     private fun updateUserProfile(data: HashMap<String,String>?): Task<CustomResponse> {
         functions = Firebase.functions("southamerica-east1")
@@ -54,8 +49,23 @@ class UserDetailProfileActivity : AppCompatActivity() {
         )
 
         if(profile.name == name && profile.phone == phone && profile.miniResume == resume && profile.cep == cep && profile.address1 == address1 && profile.address2 ==address2 && profile.address3 == address3 ){
-            Snackbar.make(binding.root,"sexu",
-                Snackbar.LENGTH_LONG).show()
+            val intent = Intent(this, MenuActivity::class.java)
+            startActivity(intent)
+            this?.finish()
+        }else if(name.isEmpty()){
+            binding.tiName.error="Este campo é obrigatório! Preencha o nome!"
+        }else if(phone.isEmpty()){
+            binding.tiFone.error="Este campo é obrigatório! Preencha o telefone!"
+        }else if(phone.length!=13){
+            binding.tiFone.error="Insira um número de telefone válido"
+        }else if(resume.isEmpty()){
+            binding.tiAddress1.error="Este campo é obrigatório! Preencha o currículo!"
+        }else if(cep.isEmpty()){
+            binding.tiCep.error="Este campo é obrigatório! Preencha o CEP!"
+        }else if(cep.length!=9){
+            binding.tiCep.error="Insira um número de CEP válido"
+        }else if(address1.isEmpty() || phone.isEmpty() || phone.isEmpty()){
+            binding.tiAddress1.error="Este campo é obrigatório! Preencha o endereço!"
         }else{
             data = hashMapOf(
                 "uid" to uid,
@@ -104,8 +114,8 @@ class UserDetailProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
+        binding.tiFone.addTextChangedListener(PhoneNumberFormattingTextWatcher("BR"))
+        binding.tiCep.addTextChangedListener(textWatcher)
         dataProfile = getUserProfile()
             .addOnCompleteListener(this) { res ->
                 if(res.result.status == "SUCCESS"){
@@ -126,5 +136,16 @@ class UserDetailProfileActivity : AppCompatActivity() {
             verificacao(binding.tiName.text.toString(),binding.tiFone.text.toString(),binding.tiResume.text.toString(),binding.tiCep.text.toString(),binding.tiAddress1.text.toString(),binding.tiAddress2.text.toString(),binding.tiAddress3.text.toString(), dataProfile)
         }
 
+    }
+    private val textWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        }
+        override fun onTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+        override fun afterTextChanged(s: Editable) {
+            if (!s.toString().contains("-") && s.length > 5) {
+                s.insert(5, "-");
+            }
+        }
     }
 }

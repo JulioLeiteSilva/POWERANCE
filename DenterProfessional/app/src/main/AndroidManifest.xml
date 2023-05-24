@@ -16,7 +16,6 @@
         <activity
             android:name=".UserDetailProfileActivity"
             android:exported="true"
-            android:label="@string/title_activity_user_detail_profile"
             android:theme="@style/Theme.DenterProfessional">
 
         </activity>
