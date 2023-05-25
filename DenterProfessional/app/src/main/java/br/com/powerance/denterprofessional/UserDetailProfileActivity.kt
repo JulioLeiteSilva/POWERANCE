@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 
 import br.com.powerance.denterprofessional.databinding.ActivityUserDetailBinding
-import br.com.powerance.denterprofessional.ui.theme.DenterProfessionalTheme
+
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
