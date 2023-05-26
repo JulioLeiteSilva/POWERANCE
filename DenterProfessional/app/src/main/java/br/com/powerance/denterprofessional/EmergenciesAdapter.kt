@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class EmergencyAdapter(val context: Context, var emergencies: ArrayList<Emergency>, var clickEmergency: ClickEmergency):
+class EmergencyAdapter(val context: Context, var emergencies: ArrayList<Emergency>,var documentsIdsList: List<String>, var clickEmergency: ClickEmergency):
         RecyclerView.Adapter<EmergencyAdapter.ViewHolder>() {
 
 
@@ -30,6 +30,7 @@ class EmergencyAdapter(val context: Context, var emergencies: ArrayList<Emergenc
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val emergency: Emergency = emergencies[position]
+//        val documentID = documentsIdsList[position]
 
         holder.nome.text = emergency.nome
 

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import br.com.powerance.denterprofessional.databinding.FragmentEmergencyBinding
+import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -37,10 +38,10 @@ class EmergencyFragment : Fragment(), EmergencyAdapter.ClickEmergency {
 
 
         val emergencyList: ArrayList<Emergency> = arrayListOf()
-        var db = Firebase.firestore
+        val documentIdsList = ArrayList<String>()
         val recyclerView: RecyclerView? = view.findViewById(R.id.rvEmergencies)
 
-        db = FirebaseFirestore.getInstance()
+        var db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
         db.collection("emergencyTeste").get()
             .addOnSuccessListener {
@@ -48,20 +49,19 @@ class EmergencyFragment : Fragment(), EmergencyAdapter.ClickEmergency {
                     for (data in it.documents){
                         val emergency: Emergency? = data.toObject(Emergency::class.java)
                         if (emergency != null){
+                            emergency.docID = data.id
                             emergencyList.add(emergency)
                         }
                     }
                 }
                 if (recyclerView != null) {
-                    recyclerView.adapter = EmergencyAdapter(context,emergencyList, this)
+                    recyclerView.adapter = EmergencyAdapter(context,emergencyList, documentIdsList,this)
                 }
             }
 
     }
 
     override fun clickEmergency(emergency: Emergency) {
-
-//        Toast.makeText(requireActivity(), "Authentication failed.", Toast.LENGTH_SHORT).show()
 
         val intent = Intent(context,EmergencyDetailActivity::class.java)
         intent.putExtra("emergencia",emergency)
