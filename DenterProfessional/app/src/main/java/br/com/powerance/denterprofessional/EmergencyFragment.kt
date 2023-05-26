@@ -36,26 +36,27 @@ class EmergencyFragment : Fragment(), EmergencyAdapter.ClickEmergency {
 
         val context: Context = requireContext()
 
-
         val emergencyList: ArrayList<Emergency> = arrayListOf()
-        val documentIdsList = ArrayList<String>()
         val recyclerView: RecyclerView? = view.findViewById(R.id.rvEmergencies)
 
         var db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-        db.collection("emergencyTeste").get()
+        db.collection("emergency").get()
             .addOnSuccessListener {
                 if (!it.isEmpty){
                     for (data in it.documents){
                         val emergency: Emergency? = data.toObject(Emergency::class.java)
                         if (emergency != null){
-                            emergency.docID = data.id
-                            emergencyList.add(emergency)
+                            if (emergency.status.equals("new")){
+                                emergency.docID = data.id
+                                emergencyList.add(emergency)
+                            }
+
                         }
                     }
                 }
                 if (recyclerView != null) {
-                    recyclerView.adapter = EmergencyAdapter(context,emergencyList, documentIdsList,this)
+                    recyclerView.adapter = EmergencyAdapter(context,emergencyList, this)
                 }
             }
 

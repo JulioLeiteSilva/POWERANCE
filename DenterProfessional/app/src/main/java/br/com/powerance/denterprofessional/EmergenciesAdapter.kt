@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class EmergencyAdapter(val context: Context, var emergencies: ArrayList<Emergency>,var documentsIdsList: List<String>, var clickEmergency: ClickEmergency):
+class EmergencyAdapter(val context: Context, var emergencies: ArrayList<Emergency>, var clickEmergency: ClickEmergency):
         RecyclerView.Adapter<EmergencyAdapter.ViewHolder>() {
 
 

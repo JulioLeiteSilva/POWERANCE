@@ -6,7 +6,7 @@ import android.os.Parcelable
 data class Emergency(
     val nome: String,
     val telefone: String,
-    val fotos: String,
+    val foto: String,
     val status: String,
     val uid: String,
     val fcm: String,
@@ -25,7 +25,7 @@ data class Emergency(
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(nome)
         parcel.writeString(telefone)
-        parcel.writeString(fotos)
+        parcel.writeString(foto)
         parcel.writeString(status)
         parcel.writeString(uid)
         parcel.writeString(fcm)

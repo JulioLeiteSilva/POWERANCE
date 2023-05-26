@@ -123,7 +123,7 @@
                         android:layout_marginEnd="32dp"
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
-                        android:text="Voltar para Emergências"
+                        android:text="Deslogar"
                         android:textColor="#ffffff"
                         android:textStyle="bold"
                         android:textSize="18sp"/>

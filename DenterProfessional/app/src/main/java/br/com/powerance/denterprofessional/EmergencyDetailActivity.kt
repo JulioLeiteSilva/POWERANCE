@@ -46,11 +46,11 @@ class EmergencyDetailActivity : AppCompatActivity() {
         binding.tvEmergencyPhone.text =
             getString(R.string.Telefone_EmergencyDetail, emergency?.telefone)
 
-        var imageID = emergency?.fotos
+        var imageID = emergency?.foto
         val storageRef = FirebaseStorage.getInstance().reference.child("emergencies/$imageID")
 //        Toast.makeText(this, "$storageRef", Toast.LENGTH_LONG).show()
 
-        val localfile = File.createTempFile("tempImage", "png")
+        val localfile = File.createTempFile("tempImage", "jpeg")
         storageRef.getFile(localfile).addOnSuccessListener {
 
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
@@ -90,7 +90,7 @@ class EmergencyDetailActivity : AppCompatActivity() {
             .addOnFailureListener{exception->
 
             }
-        db.collection("emergencyTeste").document(emergency).update(update)
+        db.collection("emergency").document(emergency).update(update)
             .addOnSuccessListener {
                 Toast.makeText(this,"Sucesso ao inserir no banco",Toast.LENGTH_SHORT).show()
             }
