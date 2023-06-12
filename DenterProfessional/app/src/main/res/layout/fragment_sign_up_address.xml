@@ -25,8 +25,7 @@
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="350dp"
-
-            android:layout_height="60dp">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signUpCEP"
@@ -41,7 +40,7 @@
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="350dp"
-            android:layout_height="60dp">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signUpAdress1"
@@ -50,37 +49,37 @@
                 android:layout_marginTop="13dp"
                 android:hint="Linha de Endereço 1"
                 android:textColor="@color/black" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="350dp"
-
-            android:layout_height="60dp">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signUpAdress2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Linha de Endereço 2"
+                android:hint="Linha de Endereço 2 (Opcional)"
                 android:textColor="@color/black" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="350dp"
-
-            android:layout_height="60dp">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signUpAdress3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Linha de Endereço 3"
+                android:hint="Linha de Endereço 3 (Opcional)"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 

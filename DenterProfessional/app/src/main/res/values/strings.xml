@@ -18,4 +18,5 @@
     <string name="Telefone_EmergencyDetail">Telefone: %s</string>
     <string name="title_activity_users_detai_profile">UsersDetailProfile</string>
     <string name="title_activity_user_detail_profile">UserDetailProfileActivity</string>
+    <string name="detalhes_da_conta">Detalhes da Conta</string>
 </resources>

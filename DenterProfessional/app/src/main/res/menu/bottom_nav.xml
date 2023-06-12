@@ -5,9 +5,9 @@
         android:id="@+id/Emergency"
         android:icon="@drawable/emergencia"/>
 
-    <item android:title="Histórico"
-        android:id="@+id/mHistoric"
-        android:icon="@drawable/historic"/>
+    <item android:title="Reputação"
+        android:id="@+id/mReputation"
+        android:icon="@drawable/reputation"/>
 
     <item android:title="Profile"
         android:id="@+id/userProfile"

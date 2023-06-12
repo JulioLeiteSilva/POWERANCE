@@ -46,11 +46,15 @@ class UserProfileFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvUsertoEmergencie.setOnClickListener {
-            findNavController().navigate(R.id.action_User_to_Emergency)
-        }
         binding.button.setOnClickListener{
             val intent = Intent(activity, UserDetailProfileActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
+
+        binding.buttonLogOut.setOnClickListener{
+            FirebaseAuth.getInstance().signOut();
+            val intent = Intent(activity, SignActivity::class.java)
             startActivity(intent)
             activity?.finish()
         }

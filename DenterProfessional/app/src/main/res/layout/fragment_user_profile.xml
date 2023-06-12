@@ -76,7 +76,7 @@
                         android:id="@+id/button"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:text="Detalhes da Conta"
+                        android:text="@string/detalhes_da_conta"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginStart="32dp"
@@ -115,7 +115,7 @@
                         android:background="@drawable/btn_background_1"
                         />
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/tvUsertoEmergencie"
+                        android:id="@+id/buttonLogOut"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         style="@android:style/Widget.Button"
