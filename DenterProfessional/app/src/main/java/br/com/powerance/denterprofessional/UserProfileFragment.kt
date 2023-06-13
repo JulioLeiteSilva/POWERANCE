@@ -84,7 +84,7 @@ class UserProfileFragment: Fragment() {
                     val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
                     val circleSize = resources.getDimensionPixelSize(R.dimen.circle_image_size)
                     val resized = Bitmap.createScaledBitmap(bitmap, circleSize,circleSize,true)
-                    binding.imageView2.setImageBitmap(rotateBitmap(resized,-90f))
+                    binding.imageView2.setImageBitmap(resized)
 
                 }
             }
@@ -114,7 +114,6 @@ class UserProfileFragment: Fragment() {
                                 Snackbar.LENGTH_LONG).show()
                         }
                     }
-
             }
         }
     }

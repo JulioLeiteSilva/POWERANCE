@@ -46,6 +46,9 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var imgViewFoto: ImageView
     private lateinit var imagemSalvaPath: String
 
+
+
+
     private var cameraProviderResult =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) {
             if (it) {
@@ -60,31 +63,24 @@ class CameraActivity : AppCompatActivity() {
             }
 
         }
-//    private var storagePermissionResult =
-//        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-//            if (isGranted) {
-//                exibirImagemSalva()
-//            } else {
-//                Snackbar.make(
-//                    binding.root,
-//                    "Você tem que aceitar as permissões",
-//                    Snackbar.LENGTH_LONG
-//                ).show()
-//            }
-//        }
+
     private fun resizeBitmap(bitmap: Bitmap, newWidth: Int, newHeight: Int): Bitmap {
         return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true)
     }
 
     private fun exibirImagemSalva() {
         val imagemSalvaPath = intent.getStringExtra("imagemSalvaPath")
-        val imageFile = File(imagemSalvaPath)
-        if (imageFile.exists()) {
-            val bitmap = BitmapFactory.decodeFile(imagemSalvaPath)
-            val resized = resizeBitmap(rotateBitmap(bitmap,-90f), 350,350)
-            binding.imgViewFoto.visibility = View.VISIBLE
-            binding.imgViewFoto.setImageBitmap(resized)
-            binding.btnConfirmar.visibility = View.VISIBLE
+
+        if (imagemSalvaPath != null) {
+            val imageFile = File(imagemSalvaPath)
+            if(imageFile.exists()){
+                val bitmap = BitmapFactory.decodeFile(imagemSalvaPath)
+                val resized = resizeBitmap(bitmap, 350,350)
+                binding.imgViewFoto.visibility = View.VISIBLE
+                binding.imgViewFoto.setImageBitmap(resized)
+                binding.btnConfirmar.visibility = View.VISIBLE
+            }
+
         }
     }
 
@@ -107,6 +103,10 @@ class CameraActivity : AppCompatActivity() {
 
         binding.btnConfirmar.setOnClickListener {
             uploadImageToFirebaseStorage()
+            binding.btnConfirmar.visibility = View.GONE
+            binding.btnTirarFoto.visibility = View.GONE
+            binding.imgViewFoto.visibility = View.GONE
+            binding.signUPProgressBar.visibility = View.VISIBLE
             Handler().postDelayed({
                 val intent = Intent(this, MenuActivity::class.java)
                 startActivity(intent)

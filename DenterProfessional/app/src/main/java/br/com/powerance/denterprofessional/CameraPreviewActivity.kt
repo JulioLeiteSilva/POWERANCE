@@ -1,6 +1,8 @@
 package br.com.powerance.denterprofessional
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.ColorDrawable
 import android.media.Image
 import android.os.Build
@@ -9,11 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.graphics.Color
+import android.graphics.Matrix
+import android.os.Environment
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 
@@ -24,7 +29,9 @@ import br.com.powerance.denterprofessional.databinding.ActivityCameraPreviewBind
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.functions.FirebaseFunctions
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.FileOutputStream
 import java.lang.Exception
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -54,10 +61,6 @@ class CameraPreviewActivity : AppCompatActivity() {
 //            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
 //                blink()
 //            }
-//
-            val intent = Intent(this, CameraActivity::class.java)
-            startActivity(intent)
-            this?.finish()
 
         }
 
@@ -79,32 +82,44 @@ class CameraPreviewActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
     private fun takePhoto(){
-        imageCapture?.let {
-            val fileName = "FOTO_JPEG_${System.currentTimeMillis()}"
-            val file = File(externalMediaDirs[0], fileName)
+        val imageCapture = imageCapture ?: return
+        val fileName = "${System.currentTimeMillis()}"
+        val outputDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        Log.i("CameraPreview", "O diretório de armazenamento é: ${outputDirectory?.absolutePath}")
+        val photoFile = File(outputDirectory, fileName)
 
-            val outputFileOptions = ImageCapture.OutputFileOptions.Builder(file).build()
-            it.takePicture(
-                outputFileOptions,
+        imageCapture.takePicture(
                 imgCaptureExecutor,
-                object: ImageCapture.OnImageSavedCallback{
-                    override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                        val imagemSalva = File(outputFileResults.savedUri?.path)
-                        val imagemSalvaPath = imagemSalva.absolutePath
+                object: ImageCapture.OnImageCapturedCallback(){
+                    override fun onCaptureSuccess(image:ImageProxy) {
 
+                        val buffer = image.planes[0].buffer
+                        val imageBytes = ByteArray(buffer.remaining())
+                        buffer.get(imageBytes)
+
+                        val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                        val outputStream = FileOutputStream(photoFile)
+                        val rotationDegrees = image.imageInfo.rotationDegrees
+
+                        val matrix = Matrix()
+                        matrix.postRotate(rotationDegrees.toFloat())
+                        val rotatedBitmap =Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+                        rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                        outputStream.close()
+                        Log.i("CameraPreview","photo")
                         val intent = Intent(this@CameraPreviewActivity, CameraActivity::class.java)
-                        intent.putExtra("imagemSalvaPath",imagemSalvaPath )
+                        intent.putExtra("imagemSalvaPath",photoFile.absolutePath )
                         startActivity(intent)
                         finish()
-                        Log.i("CameraPreview", " A imagem foi salva no diretorio ${file.toURI()}")
+                        Log.i("CameraPreview", " A imagem foi salva no diretorio ${photoFile.toURI()}")
                     }
 
                     override fun onError(exception: ImageCaptureException) {
                         Snackbar.make(binding.root,"Erro ao salvar a imagem", Toast.LENGTH_LONG).show()
-                        Log.e("CameraPreview", "Exceção ao gravar arquivo da fota: $exception")
+                        Log.e("CameraPreview", "Exceção ao gravar arquivo da foto: $exception")
                     }
                 })
-        }
+
     }
     private fun releaseCamera() {
         try {

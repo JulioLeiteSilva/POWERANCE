@@ -100,4 +100,5 @@ dependencies {
     implementation 'androidx.camera:camera-lifecycle:1.2.3'
     // View
     implementation 'androidx.camera:camera-view:1.2.3'
+
 }
