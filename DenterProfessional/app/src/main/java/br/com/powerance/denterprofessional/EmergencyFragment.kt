@@ -6,15 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import br.com.powerance.denterprofessional.databinding.FragmentEmergencyBinding
-import com.google.firebase.firestore.DocumentId
+import br.com.powerance.denterprofessional.datastore.Emergency
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import okhttp3.internal.Util
 
 class EmergencyFragment : Fragment(), EmergencyAdapter.ClickEmergency {
 

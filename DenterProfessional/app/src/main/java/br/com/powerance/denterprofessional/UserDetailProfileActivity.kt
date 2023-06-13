@@ -7,6 +7,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import br.com.powerance.denterprofessional.databinding.ActivityUserDetailBinding
+import br.com.powerance.denterprofessional.datastore.CustomResponse
+import br.com.powerance.denterprofessional.datastore.Payload
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

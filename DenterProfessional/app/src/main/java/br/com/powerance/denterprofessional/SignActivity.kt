@@ -4,13 +4,11 @@ import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.navigation.findNavController
 import br.com.powerance.denterprofessional.databinding.ActivitySignBinding
+import br.com.powerance.denterprofessional.datastore.User
 import br.com.powerance.denterprofessional.datastore.UserPreferencesRepository
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
-import com.google.firebase.messaging.ktx.messaging
 
 
 class SignActivity : AppCompatActivity() {

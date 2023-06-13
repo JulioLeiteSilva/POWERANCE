@@ -2,7 +2,6 @@ package br.com.powerance.denterprofessional
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import br.com.powerance.denterprofessional.databinding.FragmentSignUpMiniResumeBinding
+import br.com.powerance.denterprofessional.datastore.CustomResponse
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth

@@ -1,4 +1,4 @@
-package br.com.powerance.denterprofessional
+package br.com.powerance.denterprofessional.datastore
 
 
 

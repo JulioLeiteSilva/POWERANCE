@@ -1,11 +1,5 @@
 package br.com.powerance.denterprofessional
 
-import android.app.Activity
-import android.Manifest
-import android.content.ContentProviderResult
-import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import android.content.Intent
 
 import android.graphics.Bitmap
@@ -21,10 +15,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.material3.Snackbar
 
-import androidx.navigation.Navigation.findNavController
 import br.com.powerance.denterprofessional.databinding.ActivityCameraBinding
+import br.com.powerance.denterprofessional.datastore.CustomResponse
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

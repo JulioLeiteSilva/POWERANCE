@@ -7,18 +7,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import br.com.powerance.denterprofessional.databinding.ActivityEmergencyDetailBinding
-import com.google.android.gms.tasks.Task
+import br.com.powerance.denterprofessional.datastore.Emergency
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.functions.FirebaseFunctions
-import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
-import com.google.gson.GsonBuilder
 import java.io.File
-import java.io.IOException
 
 
 class EmergencyDetailActivity : AppCompatActivity() {
