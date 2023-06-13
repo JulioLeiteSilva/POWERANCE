@@ -13,5 +13,6 @@ data class Payload (
      var name: String?,
      var phone: String?,
      var status: Boolean?,
-     var uid: String?
+     var uid: String?,
+     var fotoPerfil: String?
 )

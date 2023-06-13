@@ -12,5 +12,6 @@ data class User(
     var miniResume:String,
     var status: Boolean,
     var fcmToken: String,
-    var uid: String
+    var uid: String,
+    var fotoPerfil: String
                 )

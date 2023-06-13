@@ -111,7 +111,8 @@ class SignUpMiniResumeFragment : Fragment() {
             "miniResume" to (activity as? SignActivity)?.user?.miniResume,
             "status" to (activity as? SignActivity)?.user?.status,
             "fcmToken" to (activity as? SignActivity)?.user?.fcmToken,
-            "uid" to (activity as? SignActivity)?.user?.uid
+            "uid" to (activity as? SignActivity)?.user?.uid,
+            "fotoPerfil" to ""
         )
 
         return functions

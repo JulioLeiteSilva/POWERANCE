@@ -92,4 +92,12 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
+    // Dependency for Camera X
+
+    //Api camera 2
+    implementation 'androidx.camera:camera-camera2:1.2.3'
+    //Lifecycle
+    implementation 'androidx.camera:camera-lifecycle:1.2.3'
+    // View
+    implementation 'androidx.camera:camera-view:1.2.3'
 }

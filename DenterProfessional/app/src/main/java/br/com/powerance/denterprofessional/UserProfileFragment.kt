@@ -1,10 +1,14 @@
 package br.com.powerance.denterprofessional
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -16,8 +20,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import java.io.File
 
 
 class UserProfileFragment: Fragment() {
@@ -54,6 +60,11 @@ class UserProfileFragment: Fragment() {
             startActivity(intent)
             activity?.finish()
         }
+        binding.btnFoto.setOnClickListener {
+            val intent = Intent(activity, CameraActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
 
         val menuActivity = requireActivity() as MenuActivity
         val dataProfile = menuActivity.dataProfile
@@ -64,6 +75,23 @@ class UserProfileFragment: Fragment() {
             var profile = gson.fromJson((dataProfile.result?.payload as String), Payload::class.java)
             binding.textView.text = profile.name
             binding.textView2.text = profile.email
+
+            var imageID = profile.fotoPerfil
+            if(imageID != ""){
+                val storageRef = FirebaseStorage.getInstance().reference.child("/dentista/$imageID")
+                val localfile = File.createTempFile("tempImage", "jpeg")
+                storageRef.getFile(localfile).addOnSuccessListener {
+                    val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+                    val circleSize = resources.getDimensionPixelSize(R.dimen.circle_image_size)
+                    val resized = Bitmap.createScaledBitmap(bitmap, circleSize,circleSize,true)
+                    binding.imageView2.setImageBitmap(rotateBitmap(resized,-90f))
+
+                }
+            }
+
+            if(profile.status == true) {
+                binding.switch1.isChecked = true
+            }
             binding.switch1.setOnCheckedChangeListener { _, isChecked ->
                 var status = false
                 if (isChecked) {
@@ -90,31 +118,18 @@ class UserProfileFragment: Fragment() {
             }
         }
     }
+    private fun rotateBitmap(bitmap: Bitmap, degrees: Float): Bitmap {
+        val matrix = Matrix()
+        matrix.postRotate(degrees)
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
 
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-//    private fun getUserProfile(): Task<CustomResponse> {
-//        functions = Firebase.functions("southamerica-east1")
-//
-//        auth = Firebase.auth
-//        val user = auth.currentUser
-//        val uid = user!!.uid
-//
-//        val data = hashMapOf(
-//            "uid" to uid
-//        )
-//
-//        return functions
-//            .getHttpsCallable("getUserProfileByUid")
-//            .call(data)
-//            .continueWith { task ->
-//                val result = gson.fromJson((task.result?.data as String), CustomResponse::class.java)
-//                result
-//            }
-//    }
+
 
     private fun updateUserProfile(status: Boolean?): Task<CustomResponse> {
         functions = Firebase.functions("southamerica-east1")
@@ -135,6 +150,9 @@ class UserProfileFragment: Fragment() {
                 val result = gson.fromJson((task.result?.data as String), CustomResponse::class.java)
                 result
             }
+    }
+    private fun resizeBitmap(bitmap: Bitmap, newWidth: Int, newHeight: Int): Bitmap {
+        return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true)
     }
 
 }

@@ -64,8 +64,6 @@ class UserDetailProfileActivity : AppCompatActivity() {
             binding.tiCep.error="Este campo é obrigatório! Preencha o CEP!"
         }else if(cep.length!=9){
             binding.tiCep.error="Insira um número de CEP válido"
-        }else if(address1.isEmpty() || phone.isEmpty() || phone.isEmpty()){
-            binding.tiAddress1.error="Este campo é obrigatório! Preencha o endereço!"
         }else{
             data = hashMapOf(
                 "uid" to uid,
