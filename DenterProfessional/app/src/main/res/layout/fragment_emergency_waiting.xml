@@ -22,5 +22,11 @@
             android:text="Aguardando o paciente"
             android:textSize="18sp" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_for_map"
+            android:text="Ir Para MAPA"/>
+
     </LinearLayout>
 </FrameLayout>

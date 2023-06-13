@@ -19,4 +19,5 @@
     <string name="title_activity_users_detai_profile">UsersDetailProfile</string>
     <string name="title_activity_user_detail_profile">UserDetailProfileActivity</string>
     <string name="detalhes_da_conta">Detalhes da Conta</string>
+    <string name="my_map_api_key">AIzaSyBVLOL-G3xIHVebCg9OU4RattHrvTvIT0U</string>
 </resources>

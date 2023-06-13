@@ -8,6 +8,16 @@
     <fragment
         android:id="@+id/waitingPage"
         android:name="br.com.powerance.denterprofessional.EmergencyWaitingFragment"
-        tools:layout="@layout/fragment_emergency_waiting"/>
+        tools:layout="@layout/fragment_emergency_waiting">
+        <action
+        android:id="@+id/action_waiting_to_map"
+        app:destination="@id/mapFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="br.com.powerance.denterprofessional.MapFragment"
+        tools:layout="@layout/fragment_map"/>
+
 
 </navigation>

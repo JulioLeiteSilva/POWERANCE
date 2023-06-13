@@ -1,7 +1,9 @@
 package br.com.powerance.denterprofessional
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -39,21 +41,20 @@ class EmergencyDetailActivity : AppCompatActivity() {
         val user = auth.currentUser
         val uid = user!!.uid
 
-
         emergency = intent.getParcelableExtra("emergencia")
 
         binding.tvEmergencyName.text = getString(R.string.Nome_EmergencyDetail, emergency?.nome)
-        binding.tvEmergencyPhone.text =
-            getString(R.string.Telefone_EmergencyDetail, emergency?.telefone)
+        binding.tvEmergencyPhone.text = getString(R.string.Telefone_EmergencyDetail, emergency?.telefone)
 
-        var imageID = emergency?.foto
+        val imageID = emergency?.foto
         val storageRef = FirebaseStorage.getInstance().reference.child("emergencies/$imageID")
 //        Toast.makeText(this, "$storageRef", Toast.LENGTH_LONG).show()
 
         val localfile = File.createTempFile("tempImage", "jpeg")
         storageRef.getFile(localfile).addOnSuccessListener {
 
-            val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+            val bitmap = rotateBitmap(BitmapFactory.decodeFile(localfile.absolutePath), 90f)
+
             binding.ivEmergency2.setImageBitmap(bitmap)
             binding.ivEmergency1.setImageBitmap(bitmap)
             binding.ivEmergency3.setImageBitmap(bitmap)
@@ -71,6 +72,12 @@ class EmergencyDetailActivity : AppCompatActivity() {
         binding.bReject.setOnClickListener{
             insertCollection(user.uid,"rejeitada",emergency!!.docID)
         }
+
+    }
+    private fun rotateBitmap(bitmap: Bitmap, degrees: Float): Bitmap {
+        val matrix = Matrix()
+        matrix.postRotate(degrees)
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
 
     }
 
