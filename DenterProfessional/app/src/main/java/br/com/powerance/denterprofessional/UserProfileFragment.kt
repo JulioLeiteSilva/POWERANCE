@@ -28,21 +28,16 @@ import java.io.File
 class UserProfileFragment: Fragment() {
 
     private var _binding: FragmentUserProfileBinding? = null
-
     private val binding get() = _binding!!
-
     private lateinit var functions: FirebaseFunctions
-
     private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
-
     private lateinit var auth: FirebaseAuth
-
+    private var isSwitchUserInteraction = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -88,31 +83,43 @@ class UserProfileFragment: Fragment() {
                 }
             }
 
-            if(profile.status == true) {
-                binding.switch1.isChecked = true
-            }
+            binding.switch1.isChecked = profile.status == true
+
+            isSwitchUserInteraction = false
+
             binding.switch1.setOnCheckedChangeListener { _, isChecked ->
-                var status = false
-                if (isChecked) {
-                    status = true
-                }
-                updateUserProfile(status)
-                    .addOnCompleteListener(requireActivity()) { res ->
-                        // conta criada com sucesso.
-                        if(res.result.status == "SUCCESS"){
-                            var payload = gson.fromJson((res.result?.payload as String), Payload::class.java)
-                            if(payload.status == true){
-                                Snackbar.make(requireView(),"Você está ativo!",
-                                    Snackbar.LENGTH_LONG).show()
-                            }else{
-                                Snackbar.make(requireView(),"Você está inativo!",
-                                    Snackbar.LENGTH_LONG).show()
-                            }
-                        }else{
-                            Snackbar.make(requireView(),res.result.message.toString(),
-                                Snackbar.LENGTH_LONG).show()
-                        }
+                if(isSwitchUserInteraction) {
+                    var status = false
+                    if (isChecked) {
+                        status = true
                     }
+                    updateUserProfile(status)
+                        .addOnCompleteListener(requireActivity()) { res ->
+                            // conta criada com sucesso.
+                            if (res.result.status == "SUCCESS") {
+                                var payload = gson.fromJson(
+                                    (res.result?.payload as String),
+                                    Payload::class.java
+                                )
+                                if (payload.status == true) {
+                                    Snackbar.make(
+                                        requireView(), "Você está ativo!",
+                                        Snackbar.LENGTH_LONG
+                                    ).show()
+                                } else {
+                                    Snackbar.make(
+                                        requireView(), "Você está inativo!",
+                                        Snackbar.LENGTH_LONG
+                                    ).show()
+                                }
+                            } else {
+                                Snackbar.make(
+                                    requireView(), res.result.message.toString(),
+                                    Snackbar.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                }
             }
         }
     }
@@ -120,14 +127,21 @@ class UserProfileFragment: Fragment() {
         val matrix = Matrix()
         matrix.postRotate(degrees)
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
-
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
+    override fun onResume() {
+        super.onResume()
+        // Set the flag to indicate user interaction when the fragment resumes
+        isSwitchUserInteraction = true
+    }
+    override fun onPause() {
+        super.onPause()
+        // Reset the flag when the fragment is paused
+        isSwitchUserInteraction = false
+    }
 
     private fun updateUserProfile(status: Boolean?): Task<CustomResponse> {
         functions = Firebase.functions("southamerica-east1")

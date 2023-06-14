@@ -66,18 +66,15 @@ class SignUpMiniResumeFragment : Fragment() {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
                     (activity as SignActivity).storeUserId(user!!.uid)
-                    //(activity as SignActivity).user.uid = (activity as SignActivity).getUserUid()
-                    // atualizar o perfil do usuário com os dados chamando a function.
+
                     updateUserProfile()
                         .addOnCompleteListener(requireActivity()) { res ->
-                            // conta criada com sucesso.
+
                             if(res.result.status == "SUCCESS"){
                                 Snackbar.make(requireView(),"Conta cadastrada! Pode fazer o login!",
                                     Snackbar.LENGTH_LONG).show()
                                 findNavController().navigate(R.id.action_SignUpMiniResume_to_SignIn)
                             }else{
-//                                Snackbar.make(requireView(),res.result.payload.toString(),
-//                                    Snackbar.LENGTH_LONG).show()
                                 binding.signUpMiniResume.setText(res.result.message)
                             }
                         }

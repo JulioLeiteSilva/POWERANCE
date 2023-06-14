@@ -35,9 +35,6 @@ class MenuActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { res ->
                 // conta criada com sucesso.
                 if(res.result.status == "SUCCESS"){
-
-                }else{
-
                 }
             }
         binding = ActivityMenuBinding.inflate(layoutInflater)
@@ -45,19 +42,6 @@ class MenuActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.nav_host_fragment_content_menu)
         setupSmoothBottomMenu()
-
-//        binding.bottomNavigationView.setOnItemSelectedListener {
-//            when(it.itemId){
-//
-//                R.id.Emergency -> replaceFragment(EmergencyFragment())
-//                R.id.userProfile -> replaceFragment(UserProfileFragment())
-//
-//                else ->{
-//
-//                }
-//            }
-//            true
-//        }
     }
 
 
@@ -73,7 +57,6 @@ class MenuActivity : AppCompatActivity() {
     }
 
     private fun replaceFragment(fragment : Fragment){
-
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.nav_host_fragment_content_menu,fragment)
@@ -98,6 +81,4 @@ class MenuActivity : AppCompatActivity() {
                 result
             }
     }
-
-
 }

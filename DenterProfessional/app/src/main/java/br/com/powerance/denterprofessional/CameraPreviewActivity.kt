@@ -46,8 +46,6 @@ class CameraPreviewActivity : AppCompatActivity() {
     private var imageCapture: ImageCapture? = null
     private lateinit var imgCaptureExecutor: ExecutorService
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityCameraPreviewBinding.inflate(layoutInflater)
@@ -61,14 +59,11 @@ class CameraPreviewActivity : AppCompatActivity() {
 //            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
 //                blink()
 //            }
-
         }
-
     }
     private fun startCamera(){
         cameraProviderFuture.addListener({
             imageCapture = ImageCapture.Builder().build()
-
             val cameraProvider = cameraProviderFuture.get()
             val preview = Preview.Builder().build().also{
                 it.setSurfaceProvider(binding.cameraPreview.surfaceProvider)
@@ -96,11 +91,9 @@ class CameraPreviewActivity : AppCompatActivity() {
                         val buffer = image.planes[0].buffer
                         val imageBytes = ByteArray(buffer.remaining())
                         buffer.get(imageBytes)
-
                         val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
                         val outputStream = FileOutputStream(photoFile)
                         val rotationDegrees = image.imageInfo.rotationDegrees
-
                         val matrix = Matrix()
                         matrix.postRotate(rotationDegrees.toFloat())
                         val rotatedBitmap =Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)

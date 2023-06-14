@@ -34,9 +34,7 @@ class EmergencyDetailActivity : AppCompatActivity() {
         val user = auth.currentUser
         val uid = user!!.uid
 
-
         emergency = intent.getParcelableExtra("emergencia")
-
         binding.tvEmergencyName.text = getString(R.string.Nome_EmergencyDetail, emergency?.nome)
         binding.tvEmergencyPhone.text =
             getString(R.string.Telefone_EmergencyDetail, emergency?.telefone)
