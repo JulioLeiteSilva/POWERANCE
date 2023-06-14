@@ -135,6 +135,11 @@ class UserDetailProfileActivity : AppCompatActivity() {
         binding.btnNext.setOnClickListener{
             verificacao(binding.tiName.text.toString(),binding.tiFone.text.toString(),binding.tiResume.text.toString(),binding.tiCep.text.toString(),binding.tiAddress1.text.toString(),binding.tiAddress2.text.toString(),binding.tiAddress3.text.toString(), dataProfile)
         }
+        binding.btnVoltar.setOnClickListener {
+            val intent = Intent(this, MenuActivity::class.java)
+            startActivity(intent)
+            this?.finish()
+        }
 
     }
     private val textWatcher = object : TextWatcher {

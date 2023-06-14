@@ -19,19 +19,17 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="130dp">
+        android:layout_marginTop="137dp">
 
         <com.google.android.material.textfield.TextInputLayout
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="350dp"
             android:layout_height="wrap_content">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:hint="Nome:"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -40,14 +38,12 @@
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="350dp"
-
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiFone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:hint="Telefone:"
                 android:inputType="phone"
                 android:textColor="@color/black" />
@@ -57,14 +53,12 @@
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="350dp"
-
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiCep"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:hint="CEP:"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -72,14 +66,12 @@
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="350dp"
-
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiAddress1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:hint="Endereço 1:"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -87,14 +79,12 @@
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="350dp"
-
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiAddress2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:hint="Endereço 2:"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -102,7 +92,6 @@
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="350dp"
-
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -113,29 +102,40 @@
                 android:hint="Endereço 3:"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <ScrollView
             android:layout_width="350dp"
-            android:layout_height="120dp">
+            android:layout_height="90dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tiResume"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Mini-Currículo:   "
-                android:textColor="@color/black"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiResume"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:hint="Mini-Currículo:   "
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </ScrollView>
         <Button
             android:id="@+id/btnNext"
             android:layout_width="350dp"
             android:layout_height="60dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="Atualizar"
             android:textAllCaps="false"
             android:textSize="20sp" />
-
+        <Button
+            android:id="@+id/btnVoltar"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="0dp"
+            android:text="Voltar"
+            android:textAllCaps="false"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

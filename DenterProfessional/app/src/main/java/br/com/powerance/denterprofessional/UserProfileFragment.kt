@@ -58,6 +58,10 @@ class UserProfileFragment: Fragment() {
         }
 
         binding.buttonLogOut.setOnClickListener{
+            var status = false
+            updateUserProfile(status)
+                .addOnCompleteListener(requireActivity()){
+                }
             FirebaseAuth.getInstance().signOut();
             val intent = Intent(activity, SignActivity::class.java)
             startActivity(intent)

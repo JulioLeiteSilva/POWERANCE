@@ -46,7 +46,13 @@ class CameraActivity : AppCompatActivity() {
         storage = Firebase.storage
         binding.btnTirarFoto.setOnClickListener {
             it.isEnabled = false
+            binding.btnVoltar.isEnabled = false
             cameraProviderResult.launch(android.Manifest.permission.CAMERA)
+        }
+        binding.btnVoltar.setOnClickListener{
+            val intentVoltar = Intent(this, MenuActivity::class.java)
+            startActivity(intentVoltar)
+            this?.finish()
         }
         val imagemSalvaPath = intent.getStringExtra("imagemSalvaPath")
         if (imagemSalvaPath != null) {
@@ -65,7 +71,7 @@ class CameraActivity : AppCompatActivity() {
                 val intent = Intent(this, MenuActivity::class.java)
                 startActivity(intent)
                 this?.finish()
-            },5000)
+            },2000)
 
         }
     }
@@ -86,6 +92,7 @@ class CameraActivity : AppCompatActivity() {
         return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true)
     }
     private fun exibirImagemSalva() {
+        binding.btnVoltar.visibility = View.GONE
         val imagemSalvaPath = intent.getStringExtra("imagemSalvaPath")
         if (imagemSalvaPath != null) {
             val imageFile = File(imagemSalvaPath)
