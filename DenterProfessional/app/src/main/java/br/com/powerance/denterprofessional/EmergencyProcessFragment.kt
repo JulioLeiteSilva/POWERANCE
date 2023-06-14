@@ -25,12 +25,15 @@ class EmergencyProcessFragment : Fragment() {
 
         binding.buttonTelefonar.setOnClickListener {
             if (emergencyData != null) {
-                fazerChamada(emergencyData.telefone)
+                fazerChamada(emergencyData.phone)
             }
         }
 
         binding.buttonIrAteLocal.setOnClickListener {
-            irAteLocal()
+
+            if (emergencyData != null) {
+//                irAteLocal(emergencyData)
+            }
         }
 
         binding.buttonReceberPaciente.setOnClickListener {
@@ -50,9 +53,21 @@ class EmergencyProcessFragment : Fragment() {
         startActivity(intent)
     }
 
-    private fun irAteLocal() {
-        // Lógica para ir até o local
-    }
+//    private fun irAteLocal(emergency: Emergency) {
+//        val latitude = emergency.location.latitude
+//        val longitude = emergency.location.longitude
+//
+//        val gmmIntentUri = Uri.parse("google.navigation:q=$latitude,$longitude")
+//        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+//        mapIntent.setPackage("com.google.android.apps.maps")
+//
+//        if (mapIntent.resolveActivity(requireActivity().packageManager) != null) {
+//            startActivity(mapIntent)
+//        } else {
+//            // Lide com a situação em que não há aplicativo de mapas instalado
+//        }
+//    }
+
 
     private fun receberPaciente() {
         // Lógica para receber o paciente

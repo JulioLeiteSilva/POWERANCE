@@ -52,11 +52,9 @@ class EmergencyDetailActivity : AppCompatActivity() {
                 }
             }
 
+        binding.tvEmergencyName.text = getString(R.string.Nome_EmergencyDetail, emergency?.name)
 
-
-        binding.tvEmergencyName.text = getString(R.string.Nome_EmergencyDetail, emergency?.nome)
-
-        val imageID = emergency?.foto
+        val imageID = emergency?.photo
         val storageRef = FirebaseStorage.getInstance().reference.child("emergencies/$imageID")
 //        Toast.makeText(this, "$storageRef", Toast.LENGTH_LONG).show()
 
@@ -95,6 +93,8 @@ class EmergencyDetailActivity : AppCompatActivity() {
                 .addOnSuccessListener(this){ res ->
                     if(res.status == "SUCCESS") {
                         Toast.makeText(this, "SUCESSO", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this,MenuActivity::class.java)
+                        startActivity(intent)
                     }else{
                         Toast.makeText(this, "FALHOU", Toast.LENGTH_SHORT).show()
                     }
@@ -143,7 +143,7 @@ class EmergencyDetailActivity : AppCompatActivity() {
             "name" to name,
             "uid" to uid,
             "status" to status,
-            "uidEmergency" to emergency?.docID
+            "uidEmergency" to emergency?.uid
         )
         return functions
             .getHttpsCallable("updateEmergencyStatus")
@@ -175,33 +175,4 @@ class EmergencyDetailActivity : AppCompatActivity() {
             }
     }
 
-//    private fun updateUserProfile() : Task<CustomResponse> {
-//        // chamar a function para atualizar o perfil.
-//        functions = Firebase.functions("southamerica-east1")
-//
-//        // Create the arguments to the callable function.
-//        val data = hashMapOf(
-//            "name" to (activity as? SignActivity)?.user?.name,
-//            "email" to (activity as? SignActivity)?.user?.email,
-//            "phone" to (activity as? SignActivity)?.user?.phone,
-//            "cep" to (activity as? SignActivity)?.user?.cep,
-//            "address1" to (activity as? SignActivity)?.user?.adress1,
-//            "address2" to (activity as? SignActivity)?.user?.adress2,
-//            "address3" to (activity as? SignActivity)?.user?.adress3,
-//            "miniResume" to (activity as? SignActivity)?.user?.miniResume,
-//            "status" to (activity as? SignActivity)?.user?.status,
-//            "fcmToken" to (activity as? SignActivity)?.user?.fcmToken,
-//            "uid" to (activity as? SignActivity)?.user?.uid
-//        )
-//
-//        return functions
-//            .getHttpsCallable("setUserProfileUid")
-//            .call(data)
-//            .continueWith { task ->
-//
-//                val result = gson.fromJson((task.result?.data as String), CustomResponse::class.java)
-//                result
-//            }
-//
-//    }
 }

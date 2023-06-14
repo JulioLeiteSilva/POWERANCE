@@ -32,7 +32,7 @@ class EmergencyAdapter(val context: Context, var emergencies: ArrayList<Emergenc
         val emergency: Emergency = emergencies[position]
 //        val documentID = documentsIdsList[position]
 
-        holder.nome.text = emergency.nome
+        holder.nome.text = emergency.name
 
         holder.itemEmergencia.setOnClickListener{
 
