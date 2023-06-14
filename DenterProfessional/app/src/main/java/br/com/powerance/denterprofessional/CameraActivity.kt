@@ -39,44 +39,6 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var imgViewFoto: ImageView
     private lateinit var imagemSalvaPath: String
 
-
-
-
-    private var cameraProviderResult =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
-            if (it) {
-                abrirPreview()
-
-            } else {
-                Snackbar.make(
-                    binding.root,
-                    "Você tem que aceitar as permissões",
-                    Snackbar.LENGTH_LONG
-                ).show()
-            }
-
-        }
-
-    private fun resizeBitmap(bitmap: Bitmap, newWidth: Int, newHeight: Int): Bitmap {
-        return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true)
-    }
-
-    private fun exibirImagemSalva() {
-        val imagemSalvaPath = intent.getStringExtra("imagemSalvaPath")
-
-        if (imagemSalvaPath != null) {
-            val imageFile = File(imagemSalvaPath)
-            if(imageFile.exists()){
-                val bitmap = BitmapFactory.decodeFile(imagemSalvaPath)
-                val resized = resizeBitmap(bitmap, 350,350)
-                binding.imgViewFoto.visibility = View.VISIBLE
-                binding.imgViewFoto.setImageBitmap(resized)
-                binding.btnConfirmar.visibility = View.VISIBLE
-            }
-
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityCameraBinding.inflate(layoutInflater)
@@ -93,7 +55,6 @@ class CameraActivity : AppCompatActivity() {
                 exibirImagemSalva()
             }
         }
-
         binding.btnConfirmar.setOnClickListener {
             uploadImageToFirebaseStorage()
             binding.imgViewFoto.visibility = View.GONE
@@ -108,19 +69,39 @@ class CameraActivity : AppCompatActivity() {
 
         }
     }
+    private var cameraProviderResult =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            if (it) {
+                abrirPreview()
+            } else {
+                Snackbar.make(
+                    binding.root,
+                    "Você tem que aceitar as permissões",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+        }
 
+    private fun resizeBitmap(bitmap: Bitmap, newWidth: Int, newHeight: Int): Bitmap {
+        return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true)
+    }
+    private fun exibirImagemSalva() {
+        val imagemSalvaPath = intent.getStringExtra("imagemSalvaPath")
+        if (imagemSalvaPath != null) {
+            val imageFile = File(imagemSalvaPath)
+            if(imageFile.exists()){
+                val bitmap = BitmapFactory.decodeFile(imagemSalvaPath)
+                val resized = resizeBitmap(bitmap, 150,150)
+                binding.imgViewFoto.visibility = View.VISIBLE
+                binding.imgViewFoto.setImageBitmap(resized)
+                binding.btnConfirmar.visibility = View.VISIBLE
+            }
+        }
+    }
     private fun abrirPreview() {
         val intentCameraPreview = Intent(this, CameraPreviewActivity::class.java)
         startActivity(intentCameraPreview)
     }
-
-    private fun rotateBitmap(bitmap: Bitmap, degrees: Float): Bitmap {
-        val matrix = Matrix()
-        matrix.postRotate(degrees)
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
-
-    }
-
     private fun uploadImageToFirebaseStorage() {
         val imagemSalvaPath = intent.getStringExtra("imagemSalvaPath")
         val imageFile = File(imagemSalvaPath)
@@ -143,8 +124,7 @@ class CameraActivity : AppCompatActivity() {
                 updateUserProfile(data)
                     .addOnCompleteListener {
                     }
-
-            } else {
+            }else {
                 Toast.makeText(this, "Erro ao enviar a imagem", Toast.LENGTH_SHORT).show()
                 Log.e(
                     "CameraActivity",
@@ -161,7 +141,7 @@ class CameraActivity : AppCompatActivity() {
         return functions
             .getHttpsCallable("updateUserProfile")
             .call(data)
-            .continueWith { task ->
+            .continueWith {task ->
                 val result = gson.fromJson((task.result?.data as String), CustomResponse::class.java)
                 result
             }

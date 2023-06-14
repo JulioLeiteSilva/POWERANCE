@@ -31,8 +31,6 @@ class SignActivity : AppCompatActivity() {
                 Log.w(ContentValues.TAG, "Fetching FCM registration token failed", task.exception)
                 return@OnCompleteListener
             }
-
-            // Get new FCM registration token
             userPreferencesRepository.fcmToken = task.result
         })
     }
