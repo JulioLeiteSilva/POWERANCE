@@ -9,7 +9,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import br.com.powerance.denterprofessional.databinding.ActivityEmergencyDetailBinding
+import br.com.powerance.denterprofessional.datastore.CustomResponse
 import br.com.powerance.denterprofessional.datastore.Emergency
+import br.com.powerance.denterprofessional.datastore.Payload
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth

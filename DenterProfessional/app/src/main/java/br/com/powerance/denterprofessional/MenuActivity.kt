@@ -45,19 +45,6 @@ class MenuActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.nav_host_fragment_content_menu)
         setupSmoothBottomMenu()
-
-//        binding.bottomNavigationView.setOnItemSelectedListener {
-//            when(it.itemId){
-//
-//                R.id.Emergency -> replaceFragment(EmergencyFragment())
-//                R.id.userProfile -> replaceFragment(UserProfileFragment())
-//
-//                else ->{
-//
-//                }
-//            }
-//            true
-//        }
     }
 
 

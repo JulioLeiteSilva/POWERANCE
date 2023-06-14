@@ -96,9 +96,9 @@ class CameraActivity : AppCompatActivity() {
 
         binding.btnConfirmar.setOnClickListener {
             uploadImageToFirebaseStorage()
-            binding.btnConfirmar.visibility = View.GONE
-            binding.btnTirarFoto.visibility = View.GONE
             binding.imgViewFoto.visibility = View.GONE
+            binding.btnConfirmar.isEnabled = false
+            binding.btnTirarFoto.isEnabled = false
             binding.signUPProgressBar.visibility = View.VISIBLE
             Handler().postDelayed({
                 val intent = Intent(this, MenuActivity::class.java)
@@ -131,7 +131,6 @@ class CameraActivity : AppCompatActivity() {
                 fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
                     val imageUrl = downloadUri.toString()
                 }
-                Toast.makeText(this, "Imagem enviada com sucesso", Toast.LENGTH_SHORT).show()
                 Log.i("CameraActivity", "A imagem foi enviada para o Firebase Storage com sucesso")
 
                 auth = Firebase.auth
@@ -143,7 +142,6 @@ class CameraActivity : AppCompatActivity() {
                 )
                 updateUserProfile(data)
                     .addOnCompleteListener {
-                        Toast.makeText(this, "Enviado", Toast.LENGTH_SHORT).show()
                     }
 
             } else {

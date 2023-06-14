@@ -12,11 +12,12 @@
         android:layout_height="match_parent"/>
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnTirarFoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="55dp"
         android:text="Tirar Foto"
         android:textAllCaps="false"
         android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

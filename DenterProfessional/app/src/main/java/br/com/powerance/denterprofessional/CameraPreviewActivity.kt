@@ -58,10 +58,6 @@ class CameraPreviewActivity : AppCompatActivity() {
         imgCaptureExecutor = Executors.newSingleThreadExecutor()
         binding.btnTirarFoto.setOnClickListener{
             takePhoto()
-//            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-//                blink()
-//            }
-
         }
 
     }
@@ -136,13 +132,4 @@ class CameraPreviewActivity : AppCompatActivity() {
         super.onStart()
         startCamera()
     }
-//    @RequiresApi(Build.VERSION_CODES.M)
-//    private fun blink(){
-//        binding.root.postDelayed({
-//            binding.root.foreground = ColorDrawable(Color.WHITE)
-//            binding.root.postDelayed({
-//                binding.root.foreground = null
-//            },50)
-//        },100)
-//    }
 }

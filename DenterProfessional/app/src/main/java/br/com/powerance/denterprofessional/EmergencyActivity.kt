@@ -2,6 +2,7 @@ package br.com.powerance.denterprofessional
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.com.powerance.denterprofessional.datastore.Emergency
 
 class EmergencyActivity : AppCompatActivity() {
 

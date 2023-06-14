@@ -76,8 +76,6 @@ class SignUpMiniResumeFragment : Fragment() {
                                     Snackbar.LENGTH_LONG).show()
                                 findNavController().navigate(R.id.action_SignUpMiniResume_to_SignIn)
                             }else{
-//                                Snackbar.make(requireView(),res.result.payload.toString(),
-//                                    Snackbar.LENGTH_LONG).show()
                                 binding.signUpMiniResume.setText(res.result.message)
                             }
                         }
