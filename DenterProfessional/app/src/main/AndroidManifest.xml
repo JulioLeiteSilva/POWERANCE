@@ -35,7 +35,7 @@
         <activity
             android:name=".UserDetailProfileActivity"
             android:exported="true"
-            android:theme="@style/Theme.DenterProfessional" />
+            android:theme="@style/Theme.DenterProfessional"/>
         <activity
             android:name=".MenuActivity"
             android:exported="false" />
@@ -57,10 +57,13 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/tooth128" />
+            android:resource="@drawable/ic_check" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/teal_200" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/my_map_api_key" />
 
         <service
             android:name=".messaging.DefaultMessageService"

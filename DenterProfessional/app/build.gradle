@@ -72,6 +72,7 @@ dependencies {
     implementation 'androidx.compose.material3:material3'
     implementation platform('androidx.compose:compose-bom:2022.10.00')
     implementation platform('androidx.compose:compose-bom:2022.10.00')
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

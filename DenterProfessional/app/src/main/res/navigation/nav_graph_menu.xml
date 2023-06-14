@@ -13,11 +13,9 @@
             android:id="@+id/action_User_to_Emergency"
             app:destination="@+id/Emergency"/>
         <action
-            android:id="@+id/action_User_to_DetailProfile"
-            app:destination="@+id/userDetailProfile"/>
+            android:id="@+id/action_User_to_Reputation"
+            app:destination="@+id/mReputation"/>
     </fragment>
-
-
 
     <fragment
         android:id="@+id/Emergency"
@@ -27,17 +25,31 @@
             android:id="@+id/action_Emergency_to_User"
             app:destination="@+id/userProfile"/>
         <action
-            android:id="@+id/action_Emergency_to_Details"
-            app:destination="@+id/EmergencyDetails"/>
+            android:id="@+id/action_Emergency_to_Reputation"
+            app:destination="@+id/mReputation"/>
+
     </fragment>
 
     <fragment
-        android:id="@+id/EmergencyDetails"
-        android:name="br.com.powerance.denterprofessional.EmergencyDetailFragment"
-        tools:layout="@layout/fragment_emergency_detail">
+        android:id="@+id/mReputation"
+        android:name="br.com.powerance.denterprofessional.ReputationFragment"
+        tools:layout="@layout/fragment_reputation">
         <action
-            android:id="@+id/action_Details_to_Emergency"
-            app:destination="@id/Emergency"/>
+            android:id="@+id/action_Reputation_to_User"
+            app:destination="@id/userProfile"/>
+        <action
+            android:id="@+id/action_Reputation_to_Emergency"
+            app:destination="@+id/Emergency"/>
+
     </fragment>
+
+<!--    <fragment-->
+<!--        android:id="@+id/EmergencyDetails"-->
+<!--        android:name="br.com.powerance.denterprofessional.EmergencyDetailFragment"-->
+<!--        tools:layout="@layout/fragment_emergency_detail">-->
+<!--        <action-->
+<!--            android:id="@+id/action_Details_to_Emergency"-->
+<!--            app:destination="@id/Emergency"/>-->
+<!--    </fragment>-->
 
 </navigation>

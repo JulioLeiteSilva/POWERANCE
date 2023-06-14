@@ -8,6 +8,27 @@
     <fragment
         android:id="@+id/waitingPage"
         android:name="br.com.powerance.denterprofessional.EmergencyWaitingFragment"
-        tools:layout="@layout/fragment_emergency_waiting"/>
+        tools:layout="@layout/fragment_emergency_waiting">
+        <action
+        android:id="@+id/action_waiting_to_map"
+        app:destination="@id/mapFragment"/>
+        <action
+            android:id="@+id/action_waiting_to_process"
+            app:destination="@id/emergencyProcessFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="br.com.powerance.denterprofessional.MapFragment"
+        tools:layout="@layout/fragment_map"/>
+
+    <fragment
+        android:id="@+id/emergencyProcessFragment"
+        android:name="br.com.powerance.denterprofessional.EmergencyProcessFragment"
+        android:label="Emergency Process"
+        tools:layout="@layout/fragment_emergency_process">
+    </fragment>
+
+
 
 </navigation>
