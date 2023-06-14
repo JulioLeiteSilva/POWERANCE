@@ -59,7 +59,6 @@ class EmergencyFragment : Fragment(), EmergencyAdapter.ClickEmergency {
                     recyclerView.adapter = EmergencyAdapter(context,emergencyList, this)
                 }
             }
-
     }
 
     override fun clickEmergency(emergency: Emergency) {

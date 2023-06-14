@@ -18,14 +18,13 @@ class EmergencyWaitingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentEmergencyWaitingBinding.inflate(inflater,container,false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonForMap.setOnClickListener{
-            findNavController().navigate(R.id.action_waiting_to_map)
+            findNavController().navigate(R.id.action_waiting_to_process)
         }
     }
 }

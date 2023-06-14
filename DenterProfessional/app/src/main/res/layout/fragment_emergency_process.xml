@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:gravity="center"
+    tools:context=".EmergencyProcessFragment">
+
+    <Button
+        android:id="@+id/buttonTelefonar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Telefonar" />
+
+    <LinearLayout
+        android:layout_below="@id/buttonTelefonar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/buttonIrAteLocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ir até o local" />
+
+        <Button
+            android:id="@+id/buttonReceberPaciente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Receber Paciente" />
+    </LinearLayout>
+
+</RelativeLayout>
