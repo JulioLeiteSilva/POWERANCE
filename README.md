@@ -27,9 +27,9 @@ O aplicativo Denter possui as seguintes funcionalidades principais:
 1. Clone este repositório: `git clone https://github.com/seu-usuario/denter.git`
 2. Navegue até o diretório do projeto: `cd denter`
 3. Siga as instruções específicas de instalação e execução para cada uma das versões do aplicativo:
-   - [Versão Android (Kotlin)](/android/README.md)
-   - [Versão Web (TypeScript)](/web/README.md)
-   - [Versão iOS (Flutter)](/ios/README.md)
+   - [Versão Android (Kotlin)](https://kotlinlang.org/docs/command-line.html)
+   - [Versão Web (TypeScript)]([/web/README.md](https://www.typescriptlang.org/download))
+   - [Versão Android (Flutter)]([/ios/README.md](https://docs.flutter.dev/get-started/install/windows))
 
 Certifique-se de ter as dependências necessárias instaladas para cada versão específica.
 
