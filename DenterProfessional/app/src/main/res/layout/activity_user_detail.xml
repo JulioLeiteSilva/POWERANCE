@@ -30,7 +30,7 @@
                 android:id="@+id/tiName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Nome:"
+                android:hint="@string/nome"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,7 +44,7 @@
                 android:id="@+id/tiFone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Telefone:"
+                android:hint="@string/telefone"
                 android:inputType="phone"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -59,7 +59,7 @@
                 android:id="@+id/tiCep"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="CEP:"
+                android:hint="@string/cep"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -72,7 +72,7 @@
                 android:id="@+id/tiAddress1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Endereço 1:"
+                android:hint="@string/endereco_1"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -85,7 +85,7 @@
                 android:id="@+id/tiAddress2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Endereço 2:"
+                android:hint="@string/endereco_2"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -99,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
-                android:hint="Endereço 3:"
+                android:hint="@string/endereco_3"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
         <ScrollView
@@ -115,7 +115,7 @@
                     android:id="@+id/tiResume"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:hint="Mini-Currículo:   "
+                    android:hint="@string/mini_curriculo"
                     android:textColor="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -125,7 +125,7 @@
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
-            android:text="Atualizar"
+            android:text="@string/atualizar"
             android:textAllCaps="false"
             android:textSize="20sp" />
         <Button
@@ -133,7 +133,7 @@
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="0dp"
-            android:text="Voltar"
+            android:text="@string/voltar"
             android:textAllCaps="false"
             android:textSize="20sp" />
 

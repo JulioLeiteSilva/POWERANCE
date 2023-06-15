@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Nome:"
+                android:hint="@string/nome"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,9 +48,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Telefone:"
+                android:hint="@string/telefone"
                 android:inputType="phone"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:digits="0123456789 -"
+                android:maxLength="13"/>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -65,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="E-mail:"
+                android:hint="@string/e_mail"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Confirme o E-mail:"
+                android:hint="@string/confirme_o_e_mail"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Senha:"
+                android:hint="@string/senha"
                 android:textColor="@color/black"
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -115,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Confirme sua senha:   "
+                android:hint="@string/confirme_sua_senha"
                 android:textColor="@color/black"
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -125,7 +128,7 @@
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:text="Próximo"
+            android:text="@string/b_proximo"
             android:textAllCaps="false"
             android:textSize="20sp" />
 
@@ -143,7 +146,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Já tem uma conta?"
+            android:text="@string/j_tem_uma_conta"
             android:textSize="13sp"
             android:layout_gravity="center"
             android:textColor="@color/black"/>
@@ -152,7 +155,7 @@
             android:id="@+id/tvLinkLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Faça login"
+            android:text="@string/faca_login"
             android:textSize="13sp"
             android:layout_gravity="center"
             android:textColor="#12B5A5"

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Emergências"
+    <item android:title="@string/m_emergencias"
         android:id="@+id/Emergency"
         android:icon="@drawable/emergencia"/>
 
-    <item android:title="Reputação"
+    <item android:title="@string/m_reputacao"
         android:id="@+id/mReputation"
         android:icon="@drawable/reputation"/>
 
-    <item android:title="Profile"
+    <item android:title="@string/m_profile"
         android:id="@+id/userProfile"
         android:icon="@drawable/baseline_person_24"/>
 

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="169dp"
             android:scaleType="fitStart"
-            android:src="@drawable/logo_teste" />
+            android:src="@drawable/logo" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -78,7 +78,7 @@
                     android:id="@+id/bAccept"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Aceitar"
+                    android:text="@string/aceitar"
                     android:textSize="16sp"
                     android:background="@color/teal_700"/>
 
@@ -86,7 +86,7 @@
                     android:id="@+id/bReject"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Recusar"
+                    android:text="@string/recusar"
                     android:textSize="16sp"
                     android:background="@color/teal_700"
                     android:layout_marginStart="16dp"/>

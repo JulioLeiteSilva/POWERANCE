@@ -10,7 +10,7 @@
         android:id="@+id/buttonTelefonar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Telefonar" />
+        android:text="@string/telefonar" />
 
     <LinearLayout
         android:layout_below="@id/buttonTelefonar"
@@ -24,14 +24,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ir até o local" />
+            android:text="@string/b_goToSocorrista" />
+
 
         <Button
-            android:id="@+id/buttonReceberPaciente"
+            android:id="@+id/buttonFinalizarEmergencia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Receber Paciente" />
+            android:text="@string/finalizar_atendimento" />
+
     </LinearLayout>
+
+
 
 </RelativeLayout>

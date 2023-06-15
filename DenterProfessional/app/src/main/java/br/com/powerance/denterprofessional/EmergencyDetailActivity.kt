@@ -57,8 +57,6 @@ class EmergencyDetailActivity : AppCompatActivity() {
                 }
             }
 
-
-
         binding.tvEmergencyName.text = getString(R.string.Nome_EmergencyDetail, emergency?.name)
 
         val photos = emergency?.photos
@@ -71,7 +69,7 @@ class EmergencyDetailActivity : AppCompatActivity() {
                 val localFile = File.createTempFile("tempImage", "jpeg")
 
                 storageRef.getFile(localFile).addOnSuccessListener {
-                    val bitmap = rotateBitmap(BitmapFactory.decodeFile(localFile.absolutePath), 90f)
+                    val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
                     bitmapList.add(bitmap)
 
                     // Verificar se todas as imagens foram carregadas
@@ -97,6 +95,7 @@ class EmergencyDetailActivity : AppCompatActivity() {
                         Toast.makeText(this, "SUCESSO", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this,EmergencyActivity::class.java)
                         intent.putExtra("emergencia",emergency)
+                        intent.putExtra("userAddress",profile.address1)
                         startActivity(intent)
                     }else{
                         Toast.makeText(this, "FALHOU", Toast.LENGTH_SHORT).show()
