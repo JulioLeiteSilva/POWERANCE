@@ -10,7 +10,7 @@ O Projeto Denter foi desenvolvido utilizando as seguintes tecnologias:
 
 - Kotlin: Linguagem de programação utilizada para o desenvolvimento da versão Android do aplicativo.
 - TypeScript: Linguagem de programação utilizada para o desenvolvimento da versão web do aplicativo.
-- Flutter: Framework utilizado para o desenvolvimento da versão iOS e multiplataforma do aplicativo.
+- Flutter: Framework utilizado para o desenvolvimento da versão multiplataforma do aplicativo.
 
 ## Funcionalidades
 
@@ -19,8 +19,7 @@ O aplicativo Denter possui as seguintes funcionalidades principais:
 1. Cadastro de dentistas: Os dentistas podem se cadastrar no aplicativo, fornecendo informações como nome, especialidade, localização e horários de atendimento.
 2. Solicitação de socorro: Os responsáveis pelas crianças podem solicitar socorro dentário por meio do aplicativo, fornecendo informações sobre a situação e a localização.
 3. Geolocalização: O aplicativo utiliza a geolocalização para identificar a localização atual do solicitante e direcionar o dentista mais próximo para prestar socorro.
-4. Chat em tempo real: O aplicativo permite que o dentista e o solicitante se comuniquem por meio de um chat em tempo real, facilitando a troca de informações e instruções.
-5. Avaliação do atendimento: Após o atendimento, o solicitante pode avaliar a qualidade do serviço prestado pelo dentista, contribuindo para a melhoria contínua do aplicativo.
+4. Avaliação do atendimento: Após o atendimento, o solicitante pode avaliar a qualidade do serviço prestado pelo dentista, contribuindo para a melhoria contínua do aplicativo.
 
 ## Instalação e Uso
 
@@ -32,17 +31,6 @@ O aplicativo Denter possui as seguintes funcionalidades principais:
    - [Versão Android (Flutter)]([/ios/README.md](https://docs.flutter.dev/get-started/install/windows))
 
 Certifique-se de ter as dependências necessárias instaladas para cada versão específica.
-
-## Contribuição
-
-Contribuições são bem-vindas! Se você deseja contribuir com o Projeto Denter, siga as etapas abaixo:
-
-1. Faça um fork deste repositório.
-2. Crie uma nova branch: `git checkout -b minha-nova-feature`
-3. Faça suas alterações e adicione-as: `git add .`
-4. Faça um commit das suas alterações: `git commit -m "Adiciona nova feature"`
-5. Envie para o repositório remoto: `git push origin minha-nova-feature`
-6. Abra um Pull Request nesta branch.
 
 ## Equipe
 
