@@ -57,29 +57,41 @@ class EmergencyDetailActivity : AppCompatActivity() {
                 }
             }
 
+
+
         binding.tvEmergencyName.text = getString(R.string.Nome_EmergencyDetail, emergency?.name)
 
-        val imageID = emergency?.photo
-        val storageRef = FirebaseStorage.getInstance().reference.child("emergencies/$imageID")
-//        Toast.makeText(this, "$storageRef", Toast.LENGTH_LONG).show()
+        val photos = emergency?.photos
 
-        val localfile = File.createTempFile("tempImage", "jpeg")
-        storageRef.getFile(localfile).addOnSuccessListener {
+        if (photos != null && photos.isNotEmpty()) {
+            val bitmapList = mutableListOf<Bitmap>()
 
-            val bitmap = rotateBitmap(BitmapFactory.decodeFile(localfile.absolutePath), 90f)
+            for (photo in photos) {
+                val storageRef = FirebaseStorage.getInstance().reference.child("emergencies/$photo")
+                val localFile = File.createTempFile("tempImage", "jpeg")
 
-            binding.ivEmergency2.setImageBitmap(bitmap)
-            binding.ivEmergency1.setImageBitmap(bitmap)
-            binding.ivEmergency3.setImageBitmap(bitmap)
+                storageRef.getFile(localFile).addOnSuccessListener {
+                    val bitmap = rotateBitmap(BitmapFactory.decodeFile(localFile.absolutePath), 90f)
+                    bitmapList.add(bitmap)
 
-        }.addOnFailureListener {
-
-            Toast.makeText(this, "Não Deu pra pegar a imagem", Toast.LENGTH_SHORT).show()
+                    // Verificar se todas as imagens foram carregadas
+                    if (bitmapList.size == photos.size) {
+                        // Utilizar as imagens carregadas
+                        binding.ivEmergency2.setImageBitmap(bitmapList[1])
+                        binding.ivEmergency1.setImageBitmap(bitmapList[0])
+                        binding.ivEmergency3.setImageBitmap(bitmapList[2])
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Não foi possível obter a imagem", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            Toast.makeText(this, "Nenhuma foto disponível", Toast.LENGTH_SHORT).show()
         }
 
         binding.bAccept.setOnClickListener{
             var profile = gson.fromJson((dataProfile.result?.payload as String), Payload::class.java)
-            updateEmergencyStatus("accepted",uid,profile.name)
+            updateEmergencyStatus("accepted",uid,profile.name,emergency?.uid)
                 .addOnSuccessListener(this){ res ->
                     if(res.status == "SUCCESS") {
                         Toast.makeText(this, "SUCESSO", Toast.LENGTH_SHORT).show()
@@ -94,7 +106,7 @@ class EmergencyDetailActivity : AppCompatActivity() {
 
         binding.bReject.setOnClickListener{
             var profile = gson.fromJson((dataProfile.result?.payload as String), Payload::class.java)
-            updateEmergencyStatus("rejected",uid,profile.name)
+            updateEmergencyStatus("rejected",uid,profile.name,emergency?.uid)
                 .addOnSuccessListener(this){ res ->
                     if(res.status == "SUCCESS") {
                         Toast.makeText(this, "SUCESSO", Toast.LENGTH_SHORT).show()
@@ -148,7 +160,7 @@ class EmergencyDetailActivity : AppCompatActivity() {
             "name" to name,
             "uid" to uid,
             "status" to status,
-            "uidEmergency" to emergency?.uid
+            "uidEmergency" to uidEmergency
         )
         return functions
             .getHttpsCallable("updateEmergencyStatus")

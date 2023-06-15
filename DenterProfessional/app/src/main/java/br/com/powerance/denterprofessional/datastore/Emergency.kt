@@ -4,32 +4,29 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Emergency(
-    val nome: String,
-    val telefone: String,
-    val foto: String,
+    val name: String,
+    val phone: String,
+    val photos: List<String>,
     val status: String,
-    val uid: String,
-    val fcm: String,
-    var docID: String
+    var uid: String,
+    val fcmToken: String,
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
-        parcel.readString() ?: "",
-        parcel.readString() ?: "",
+        parcel.createStringArrayList() ?: emptyList(),
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: ""
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(nome)
-        parcel.writeString(telefone)
-        parcel.writeString(foto)
+        parcel.writeString(name)
+        parcel.writeString(phone)
+        parcel.writeStringList(photos)
         parcel.writeString(status)
         parcel.writeString(uid)
-        parcel.writeString(fcm)
-        parcel.writeString(docID)
+        parcel.writeString(fcmToken)
     }
 
     override fun describeContents(): Int {
@@ -45,7 +42,7 @@ data class Emergency(
             return arrayOfNulls(size)
         }
     }
-        constructor(): this("","","","","","","")
+    constructor() : this("", "", emptyList(), "", "", "")
     }
 
 
