@@ -12,11 +12,13 @@ class EmergencyActivity : AppCompatActivity() {
 
     public var emergency: Emergency? = null
     lateinit var notificationMessage: String
+    lateinit var userAddress: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emergency)
 
         emergency = intent.getParcelableExtra("emergencia")
+        userAddress = intent.getStringExtra("userAddress").toString()
         notificationMessage= intent.getStringExtra("NotificationMessage").toString()
 
         if(notificationMessage=="A emergência está em andamento"){
@@ -25,4 +27,6 @@ class EmergencyActivity : AppCompatActivity() {
         }
 
     }
+
+
 }

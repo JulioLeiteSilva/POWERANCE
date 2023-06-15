@@ -30,10 +30,18 @@ class EmergencyProcessFragment : Fragment() {
         _binding = FragmentEmergencyProcessBinding.inflate(inflater, container, false)
         val view = binding.root
 
+
+
+
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val emergencyData = (activity as? EmergencyActivity)?.emergency
         val userAdress = (activity as? EmergencyActivity)?.userAddress // Não utilizada agora
-
-
 
         binding.buttonTelefonar.setOnClickListener {
             if (emergencyData != null) {
@@ -77,7 +85,6 @@ class EmergencyProcessFragment : Fragment() {
             }
         }
 
-        return view
     }
 
     override fun onDestroyView() {

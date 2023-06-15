@@ -58,11 +58,7 @@ class DefaultMessageService : FirebaseMessagingService() {
      * ou enviar um parametro na Intent para tratar qual fragment abrir.(desafio para vc fazer)
      */
     private fun showNotification(messageBody: String) {
-        var intent = Intent(this, MainActivity::class.java)
-        if(messageBody=="A emergência está em andamento"){
-            intent = Intent(this, EmergencyActivity::class.java)
-            intent.putExtra("NotificationMessage",messageBody)
-        }
+        val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
             PendingIntent.FLAG_IMMUTABLE)

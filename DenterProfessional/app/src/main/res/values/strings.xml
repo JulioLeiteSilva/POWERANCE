@@ -45,6 +45,7 @@
     <string name="cadastrar_se">Cadastrar-se</string>
     <string name="aguardando_o_paciente">Aguardando o paciente</string>
     <string name="ir_para_mapa">Ir Para MAPA</string>
+    <string name="atender">Atender</string>
     <string name="telefonar">Telefonar</string>
     <string name="b_goToSocorrista">Ir até o local</string>
     <string name="b_receiveSocorrista">Receber Paciente</string>

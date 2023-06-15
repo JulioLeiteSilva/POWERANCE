@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button_for_map"
-            android:text="@string/ir_para_mapa"/>
+            android:text="@string/atender"/>
 
     </LinearLayout>
 </FrameLayout>

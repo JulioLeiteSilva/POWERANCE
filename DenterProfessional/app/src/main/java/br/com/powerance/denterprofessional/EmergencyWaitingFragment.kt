@@ -30,4 +30,8 @@ class EmergencyWaitingFragment : Fragment() {
             findNavController().navigate(R.id.action_waiting_to_process)
         }
     }
+
+    public fun teste(){
+        findNavController().navigate(R.id.action_waiting_to_process)
+    }
 }
