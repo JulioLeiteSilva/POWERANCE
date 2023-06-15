@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.powerance.denterprofessional.datastore.Payload
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
 
 
@@ -16,6 +19,7 @@ class ReputationFragment : Fragment() {
 
     private lateinit var recyclerViewReviews: RecyclerView
     private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,16 +41,19 @@ class ReputationFragment : Fragment() {
     private fun getListOfReviews(callback: (List<Review>) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val collectionReference = db.collection("reviews")
-        val dataProfile = (activity as MenuActivity).dataProfile
-        val profile = gson.fromJson((dataProfile.result?.payload as String), Payload::class.java)
+//        val dataProfile = (activity as MenuActivity).dataProfile
+//        val profile = gson.fromJson((dataProfile.result?.payload as String), Payload::class.java)
+        auth = Firebase.auth
+        val user = auth.currentUser
+        val uidUser = user!!.uid
         collectionReference.get().addOnSuccessListener { querySnapshot ->
             val listReview = mutableListOf<Review>()
 
             for (document in querySnapshot) {
                 val uid = document.getString("uid")
-                if( uid == profile.uid){
+                if( uid == uidUser){
                     val nome = document.getString("nome")
-                    val classificacao = document.getDouble("classificacao")?.toFloat()
+                    val classificacao = document.getString("classificacao")?.toFloat()
                     val comentario = document.getString("comentario")
 
                     if(nome!= null && classificacao != null && comentario != null){
