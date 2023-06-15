@@ -1,6 +1,6 @@
 # Projeto Denter
 
-(DenterProfessional/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
+
 
 O Projeto Denter é um aplicativo desenvolvido como parte da disciplina de Projeto Integrador 3. O objetivo do aplicativo é fornecer um serviço de socorro dentário para crianças, permitindo que os dentistas ofereçam ajuda rápida e eficiente em situações de emergência odontológica.
 
