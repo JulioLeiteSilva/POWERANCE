@@ -69,15 +69,15 @@ class EmergencyDetailActivity : AppCompatActivity() {
                 val localFile = File.createTempFile("tempImage", "jpeg")
 
                 storageRef.getFile(localFile).addOnSuccessListener {
-                    val bitmap = rotateBitmap(BitmapFactory.decodeFile(localFile.absolutePath), 90f)
+                    val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
                     bitmapList.add(bitmap)
 
                     // Verificar se todas as imagens foram carregadas
                     if (bitmapList.size == photos.size) {
                         // Utilizar as imagens carregadas
-                        binding.ivEmergency2.setImageBitmap(rotateBitmap(bitmapList[1], -90f))
-                        binding.ivEmergency1.setImageBitmap(rotateBitmap(bitmapList[0], -90f))
-                        binding.ivEmergency3.setImageBitmap(rotateBitmap(bitmapList[2], -90f))
+                        binding.ivEmergency2.setImageBitmap(bitmapList[1])
+                        binding.ivEmergency1.setImageBitmap(bitmapList[0])
+                        binding.ivEmergency3.setImageBitmap(bitmapList[2])
                     }
                 }.addOnFailureListener {
                     Toast.makeText(this, "Não foi possível obter a imagem", Toast.LENGTH_SHORT).show()
@@ -95,6 +95,7 @@ class EmergencyDetailActivity : AppCompatActivity() {
                         Toast.makeText(this, "SUCESSO", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this,EmergencyActivity::class.java)
                         intent.putExtra("emergencia",emergency)
+                        intent.putExtra("userAddress",profile.address1)
                         startActivity(intent)
                     }else{
                         Toast.makeText(this, "FALHOU", Toast.LENGTH_SHORT).show()

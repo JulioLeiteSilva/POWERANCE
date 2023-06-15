@@ -1,6 +1,7 @@
 package br.com.powerance.denterprofessional
 
 import android.content.Intent
+import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,12 +10,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.powerance.denterprofessional.databinding.FragmentEmergencyProcessBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
 
 
 class EmergencyProcessFragment : Fragment() {
     private var _binding: FragmentEmergencyProcessBinding? = null
     private lateinit var auth: FirebaseAuth
     private val binding get() = _binding!!
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +28,7 @@ class EmergencyProcessFragment : Fragment() {
         val view = binding.root
 
         val emergencyData = (activity as? EmergencyActivity)?.emergency
+        val userAdress = (activity as? EmergencyActivity)?.userAddress
 
         binding.buttonTelefonar.setOnClickListener {
             if (emergencyData != null) {
@@ -31,10 +36,23 @@ class EmergencyProcessFragment : Fragment() {
             }
         }
 
+
         binding.buttonIrAteLocal.setOnClickListener {
 
             if (emergencyData != null) {
-//                irAteLocal(emergencyData)
+                val documentId = emergencyData.uid
+                obterLocalizacaoPorId(documentId) { geoPoint ->
+                    if (geoPoint != null) {
+                        val latitude = geoPoint.latitude
+                        val longitude = geoPoint.longitude
+                        if (userAdress != null) {
+                            irAteLocal(userAdress,latitude,longitude)
+                        }
+                    } else {
+                        // Documento não encontrado ou ocorreu um erro
+                        // Lide com essa situação adequadamente
+                    }
+                }
             }
         }
 
@@ -55,21 +73,50 @@ class EmergencyProcessFragment : Fragment() {
         startActivity(intent)
     }
 
-//    private fun irAteLocal(emergency: Emergency) {
-//        val latitude = emergency.location.latitude
-//        val longitude = emergency.location.longitude
-//
-//        val gmmIntentUri = Uri.parse("google.navigation:q=$latitude,$longitude")
-//        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-//        mapIntent.setPackage("com.google.android.apps.maps")
-//
-//        if (mapIntent.resolveActivity(requireActivity().packageManager) != null) {
-//            startActivity(mapIntent)
-//        } else {
-//            // Lide com a situação em que não há aplicativo de mapas instalado
-//        }
-//    }
+    fun obterLocalizacaoPorId(documentId: String, callback: (GeoPoint?) -> Unit) {
+        val docRef = db.collection("emergency").document(documentId)
+        docRef.get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val document = task.result
+                    if (document.exists()) {
+                        val geoPoint = document.getGeoPoint("location")
+                        callback(geoPoint)
+                    } else {
+                        // Documento não encontrado
+                        callback(null)
+                    }
+                } else {
+                    // Erro na busca do documento
+                    callback(null)
+                }
+            }
+    }
+    // A
+    private fun irAteLocal(enderecoPartida: String, latitudeDestino: Double, longitudeDestino: Double) {
 
+        val geocoder = context?.let { Geocoder(it) }
+        val addressList = geocoder?.getFromLocationName(enderecoPartida, 1)
+        if (addressList != null) {
+            if (addressList.isNotEmpty()) {
+                val address = addressList[0]
+                val partidaLatitude = address.latitude
+                val partidaLongitude = address.longitude
+
+                val gmmIntentUri = Uri.parse("google.navigation:q=$latitudeDestino,$longitudeDestino&origin=$partidaLatitude,$partidaLongitude")
+                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                mapIntent.setPackage("com.google.android.apps.maps")
+
+                if (mapIntent.resolveActivity(requireActivity().packageManager) != null) {
+                    startActivity(mapIntent)
+                } else {
+                    // Lide com a situação em que não há aplicativo de mapas instalado
+                }
+            } else {
+                // Lide com a situação em que o endereço de partida não pôde ser convertido em coordenadas geográficas
+            }
+        }
+    }
 
     private fun receberPaciente() {
         // Lógica para receber o paciente
