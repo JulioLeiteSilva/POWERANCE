@@ -108,7 +108,7 @@ class EmergencyDetailActivity : AppCompatActivity() {
             updateEmergencyStatus("rejected",uid,profile.name,emergency?.uid)
                 .addOnSuccessListener(this){ res ->
                     if(res.status == "SUCCESS") {
-                        Toast.makeText(this, "SUCESSO", Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(this, "SUCESSO", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this,MenuActivity::class.java)
                         startActivity(intent)
                     }else{

@@ -71,7 +71,7 @@ class CameraActivity : AppCompatActivity() {
                 val intent = Intent(this, MenuActivity::class.java)
                 startActivity(intent)
                 this?.finish()
-            },2000)
+            },3500)
 
         }
     }

@@ -77,7 +77,7 @@ class EmergencyFragment : Fragment(), EmergencyAdapter.ClickEmergency {
                     if (recyclerView != null) {
                         recyclerView.adapter = EmergencyAdapter(context,ArrayList(emergency.toList()), this)
                     }
-                    Toast.makeText(requireActivity(), "SUCESSO", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(requireActivity(), "SUCESSO", Toast.LENGTH_SHORT).show()
                 }else{
                     Toast.makeText(requireActivity(), "FALHOU", Toast.LENGTH_SHORT).show()
                 }
