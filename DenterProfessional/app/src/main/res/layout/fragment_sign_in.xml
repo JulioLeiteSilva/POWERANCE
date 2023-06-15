@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="E-mail:"
+                android:hint="@string/e_mail"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,19 +50,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Senha:"
+                android:hint="@string/senha"
                 android:textColor="@color/black"
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
-
-
 
         <Button
             android:id="@+id/btnEntrar"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:text="Entrar"
+            android:text="@string/entrar"
             android:textAllCaps="false"
             android:textSize="20sp" />
 
@@ -80,7 +78,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Não possui uma conta?"
+            android:text="@string/n_o_possui_uma_conta"
             android:textSize="13sp"
             android:layout_gravity="center"
             android:textColor="@color/black"/>
@@ -89,7 +87,7 @@
             android:id="@+id/tvLinkSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cadastrar-se"
+            android:text="@string/cadastrar_se"
             android:textSize="13sp"
             android:layout_gravity="center"
             android:textColor="#12B5A5"

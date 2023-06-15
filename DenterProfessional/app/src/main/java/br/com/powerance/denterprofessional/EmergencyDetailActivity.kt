@@ -57,8 +57,6 @@ class EmergencyDetailActivity : AppCompatActivity() {
                 }
             }
 
-
-
         binding.tvEmergencyName.text = getString(R.string.Nome_EmergencyDetail, emergency?.name)
 
         val photos = emergency?.photos
@@ -77,9 +75,9 @@ class EmergencyDetailActivity : AppCompatActivity() {
                     // Verificar se todas as imagens foram carregadas
                     if (bitmapList.size == photos.size) {
                         // Utilizar as imagens carregadas
-                        binding.ivEmergency2.setImageBitmap(bitmapList[1])
-                        binding.ivEmergency1.setImageBitmap(bitmapList[0])
-                        binding.ivEmergency3.setImageBitmap(bitmapList[2])
+                        binding.ivEmergency2.setImageBitmap(rotateBitmap(bitmapList[1], -90f))
+                        binding.ivEmergency1.setImageBitmap(rotateBitmap(bitmapList[0], -90f))
+                        binding.ivEmergency3.setImageBitmap(rotateBitmap(bitmapList[2], -90f))
                     }
                 }.addOnFailureListener {
                     Toast.makeText(this, "Não foi possível obter a imagem", Toast.LENGTH_SHORT).show()

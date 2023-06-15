@@ -19,14 +19,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Aguardando o paciente"
+            android:text="@string/aguardando_o_paciente"
             android:textSize="18sp" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button_for_map"
-            android:text="Ir Para MAPA"/>
+            android:text="@string/ir_para_mapa"/>
 
     </LinearLayout>
 </FrameLayout>

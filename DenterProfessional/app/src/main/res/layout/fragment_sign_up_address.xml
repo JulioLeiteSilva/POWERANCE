@@ -32,8 +32,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="CEP"
-                android:textColor="@color/black" />
+                android:hint="@string/cep"
+                android:textColor="@color/black"
+                android:digits="0123456789 -"
+                android:maxLength="9"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -47,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Linha de Endereço 1"
+                android:hint="@string/linha_de_endereco_1"
                 android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -63,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Linha de Endereço 2 (Opcional)"
+                android:hint="@string/linha_de_endereco_2_opcional"
                 android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -79,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="13dp"
-                android:hint="Linha de Endereço 3 (Opcional)"
+                android:hint="@string/linha_de_endereco_3_opcional"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +90,7 @@
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:text="Próximo"
+            android:text="@string/b_proximo"
             android:textAllCaps="false"
             android:textSize="20sp" />
 

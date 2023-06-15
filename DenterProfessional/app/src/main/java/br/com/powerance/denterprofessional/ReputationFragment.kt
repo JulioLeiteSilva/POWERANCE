@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.com.powerance.denterprofessional.datastore.Payload
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.GsonBuilder
 
