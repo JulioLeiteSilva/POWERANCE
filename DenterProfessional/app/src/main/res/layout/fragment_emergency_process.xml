@@ -26,12 +26,16 @@
             android:layout_weight="1"
             android:text="@string/b_goToSocorrista" />
 
+
         <Button
-            android:id="@+id/buttonReceberPaciente"
+            android:id="@+id/buttonFinalizarEmergencia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/b_receiveSocorrista" />
+            android:text="@string/finalizar_atendimento" />
+
     </LinearLayout>
+
+
 
 </RelativeLayout>
