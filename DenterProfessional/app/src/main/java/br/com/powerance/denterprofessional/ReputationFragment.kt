@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.GsonBuilder
 
 
 class ReputationFragment : Fragment() {
 
     private lateinit var recyclerViewReviews: RecyclerView
+    private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,18 +36,22 @@ class ReputationFragment : Fragment() {
     private fun getListOfReviews(callback: (List<Review>) -> Unit) {
         val db = FirebaseFirestore.getInstance()
         val collectionReference = db.collection("reviews")
-
+        val dataProfile = (activity as MenuActivity).dataProfile
+        val profile = gson.fromJson((dataProfile.result?.payload as String), Payload::class.java)
         collectionReference.get().addOnSuccessListener { querySnapshot ->
             val listReview = mutableListOf<Review>()
 
             for (document in querySnapshot) {
-                val nome = document.getString("nome")
-                val classificacao = document.getDouble("classificacao")?.toFloat()
-                val comentario = document.getString("comentario")
+                val uid = document.getString("uid")
+                if( uid == profile.uid){
+                    val nome = document.getString("nome")
+                    val classificacao = document.getDouble("classificacao")?.toFloat()
+                    val comentario = document.getString("comentario")
 
-                if(nome!= null && classificacao != null && comentario != null){
-                    val review = Review(nome, classificacao, comentario)
-                    listReview.add(review)
+                    if(nome!= null && classificacao != null && comentario != null){
+                        val review = Review(nome, classificacao, comentario)
+                        listReview.add(review)
+                    }
                 }
             }
             callback(listReview)

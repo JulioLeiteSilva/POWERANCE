@@ -44,7 +44,7 @@ class EmergencyFragment : Fragment(), EmergencyAdapter.ClickEmergency {
                         val emergency: Emergency? = data.toObject(Emergency::class.java)
                         if (emergency != null){
                             if (emergency.status.equals("new")){
-                                emergency.docID = data.id
+                                emergency.uid = data.id
                                 emergencyList.add(emergency)
                             }
 
