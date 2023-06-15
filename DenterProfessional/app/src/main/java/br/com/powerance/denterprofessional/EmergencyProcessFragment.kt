@@ -8,6 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import br.com.powerance.denterprofessional.databinding.FragmentEmergencyProcessBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -29,6 +32,8 @@ class EmergencyProcessFragment : Fragment() {
 
         val emergencyData = (activity as? EmergencyActivity)?.emergency
         val userAdress = (activity as? EmergencyActivity)?.userAddress // Não utilizada agora
+
+
 
         binding.buttonTelefonar.setOnClickListener {
             if (emergencyData != null) {

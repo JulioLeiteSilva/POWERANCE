@@ -8,6 +8,7 @@ import android.content.Intent
 import android.media.RingtoneManager
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import br.com.powerance.denterprofessional.EmergencyActivity
 import br.com.powerance.denterprofessional.MainActivity
 import br.com.powerance.denterprofessional.R
 import br.com.powerance.denterprofessional.datastore.UserPreferencesRepository
@@ -57,7 +58,11 @@ class DefaultMessageService : FirebaseMessagingService() {
      * ou enviar um parametro na Intent para tratar qual fragment abrir.(desafio para vc fazer)
      */
     private fun showNotification(messageBody: String) {
-        val intent = Intent(this, MainActivity::class.java)
+        var intent = Intent(this, MainActivity::class.java)
+        if(messageBody=="A emergência está em andamento"){
+            intent = Intent(this, EmergencyActivity::class.java)
+            intent.putExtra("NotificationMessage",messageBody)
+        }
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
             PendingIntent.FLAG_IMMUTABLE)
