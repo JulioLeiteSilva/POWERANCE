@@ -153,7 +153,7 @@ class EmergencyDetailActivity : AppCompatActivity() {
         return null
     }
 
-    private fun updateEmergencyStatus(status: String,uid: String,name: String?): Task<CustomResponse> {
+    private fun updateEmergencyStatus(status: String,uid: String,name: String?,uidEmergency: String?): Task<CustomResponse> {
         functions = Firebase.functions("southamerica-east1")
 
         val data = hashMapOf(
