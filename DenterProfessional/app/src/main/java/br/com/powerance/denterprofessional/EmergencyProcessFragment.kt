@@ -36,7 +36,6 @@ class EmergencyProcessFragment : Fragment() {
             }
         }
 
-
         binding.buttonIrAteLocal.setOnClickListener {
 
             if (emergencyData != null) {
@@ -96,14 +95,15 @@ class EmergencyProcessFragment : Fragment() {
     private fun irAteLocal(enderecoPartida: String, latitudeDestino: Double, longitudeDestino: Double) {
 
         val geocoder = context?.let { Geocoder(it) }
-        val addressList = geocoder?.getFromLocationName(enderecoPartida, 1)
+        val addressList = geocoder?.getFromLocationName(enderecoPartida, 1) // Pegar localização do endereço do dentista
         if (addressList != null) {
             if (addressList.isNotEmpty()) {
                 val address = addressList[0]
                 val partidaLatitude = address.latitude
                 val partidaLongitude = address.longitude
 
-                val gmmIntentUri = Uri.parse("google.navigation:q=$latitudeDestino,$longitudeDestino&origin=$partidaLatitude,$partidaLongitude")
+                // Mapa Vai com Localização atual do Dentista
+                val gmmIntentUri = Uri.parse("https://www.google.com/maps/dir/?api=1&destination=$latitudeDestino,$longitudeDestino&travelmode=driving")
                 val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
                 mapIntent.setPackage("com.google.android.apps.maps")
 
