@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.powerance.denterprofessional.databinding.FragmentEmergencyProcessBinding
+import com.google.firebase.auth.FirebaseAuth
 
 
 class EmergencyProcessFragment : Fragment() {
     private var _binding: FragmentEmergencyProcessBinding? = null
+    private lateinit var auth: FirebaseAuth
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -25,7 +27,7 @@ class EmergencyProcessFragment : Fragment() {
 
         binding.buttonTelefonar.setOnClickListener {
             if (emergencyData != null) {
-                fazerChamada(emergencyData.telefone)
+                fazerChamada(emergencyData.phone)
             }
         }
 
